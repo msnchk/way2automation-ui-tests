@@ -7,9 +7,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public abstract class BasePage {
+    public static final String MEMBERSHIP_CLUB_URL = "https://www.way2automation.com/lifetime-membership-club/";
+    public static final String SELENIUM_TRAINING_URL = "https://www.way2automation.com/selenium-training/online-training-webinars/";
+    public static final String YOUTUBE_CHANNEL_URL = "https://www.youtube.com/c/seleniumappiumtutorialtraining";
     protected WebDriver driver;
     protected Actions actions;
-    protected final WaitHelper waitHelper = new WaitHelper();
 
     @FindBy(css = ".dialog-widget-content.dialog-lightbox-widget-content")
     private WebElement popup;
@@ -38,24 +40,13 @@ public abstract class BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public boolean isPopupVisible() {
+    public void waitForPopup() {
         actions.sendKeys(Keys.PAGE_DOWN).sendKeys(Keys.PAGE_UP).perform();
-        try {
-            waitHelper.waitForElementToBeVisible(driver, popup);
-            return true;
-        } catch (TimeoutException | NoSuchElementException e) {
-            return false;
-        }
+        WaitHelper.waitForElementToBeVisible(driver, popup);
     }
 
     public void clickButtonRegisterNowOnPopup() {
         clickWhenClickable(registerNowButton);
-    }
-
-    public void hidePopup() {
-        if (this.isPopupVisible()) {
-            this.clickButtonClosePopup();
-        }
     }
 
     public void navigateToSeleniumWithJavaFromMenu() {
@@ -68,14 +59,14 @@ public abstract class BasePage {
         clickWhenClickable(youTubeIcon);
     }
 
-    protected void clickWhenClickable(WebElement element) {
-        waitHelper.waitForElementToBeVisible(driver, element);
-        waitHelper.waitForElementToBeClickable(driver, element);
-        actions.scrollToElement(element);
-        element.click();
+    public void clickButtonClosePopup() {
+        clickWhenClickable(closePopupButton);
     }
 
-    protected void clickButtonClosePopup() {
-        clickWhenClickable(closePopupButton);
+    protected void clickWhenClickable(WebElement element) {
+        WaitHelper.waitForElementToBeVisible(driver, element);
+        WaitHelper.waitForElementToBeClickable(driver, element);
+        actions.scrollToElement(element);
+        element.click();
     }
 }

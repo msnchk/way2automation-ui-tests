@@ -1,8 +1,6 @@
 package tests;
 
-import helpers.PropertyProvider;
 import helpers.WaitHelper;
-import org.openqa.selenium.TimeoutException;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -10,12 +8,6 @@ import pages.MainPage;
 
 public class MainPageUITest extends BaseTest {
     private MainPage mainPage;
-    private final WaitHelper waitHelper = new WaitHelper();
-    private final String membershipClubUrl = PropertyProvider.getInstance().getProperty("way2automation.membership-club.url");
-    private final String seleniumTrainingUrl = PropertyProvider.getInstance().getProperty("way2automation.selenium-training.url");
-    private final String youTubeChannelUrl = PropertyProvider.getInstance().getProperty("way2automation.youtube.url");
-    private final String javaApiTestingUrl = PropertyProvider.getInstance().getProperty("way2automation.java-api-testing.url");
-    private final String seleniumTutorialUrl = PropertyProvider.getInstance().getProperty("selenium-tutorial.robot-framework.url");
 
     @BeforeMethod
     public void openMainPage() {
@@ -24,54 +16,55 @@ public class MainPageUITest extends BaseTest {
     }
 
     @Test
-    public void shouldCheckPopupAndNavigateOnRegisterNowClick() {
-        Assert.assertTrue(mainPage.isPopupVisible(), "Popup should be visible");
+    public void shouldWaitPopupAndNavigateOnRegisterNowClick() {
+        mainPage.waitForPopup();
         mainPage.clickButtonRegisterNowOnPopup();
 
-        Assert.assertTrue(isCurrentPageMatchExpected(membershipClubUrl), "Expected URL: " + membershipClubUrl + ", but get " + getDriver().getCurrentUrl());
+        Assert.assertEquals(getDriver().getCurrentUrl(),
+                MainPage.MEMBERSHIP_CLUB_URL, "Membership club page wasn't opened");
     }
 
     @Test
     public void shouldNavigateToSeleniumWithJavaFromMenu() {
-        mainPage.hidePopup();
+        mainPage.waitForPopup();
+        mainPage.clickButtonClosePopup();
         mainPage.navigateToSeleniumWithJavaFromMenu();
 
-        Assert.assertTrue(isCurrentPageMatchExpected(seleniumTrainingUrl), "Expected URL: " + seleniumTrainingUrl + ", but get " + getDriver().getCurrentUrl());
+        Assert.assertEquals(getDriver().getCurrentUrl(),
+                MainPage.SELENIUM_TRAINING_URL, "Selenium training page wasn't opened");
     }
 
     @Test
     public void shouldNavigateToYouTubeFromHeader() {
-        mainPage.hidePopup();
+        mainPage.waitForPopup();
+        mainPage.clickButtonClosePopup();
         mainPage.navigateToYouTubeFromHeaderIcon();
-        waitHelper.waitForNewTab(getDriver());
+        WaitHelper.waitForNumberOfTabs(getDriver(), 2);
         Object[] windowHandles = getDriver().getWindowHandles().toArray();
         getDriver().switchTo().window((String) windowHandles[1]);
 
-        Assert.assertTrue(isCurrentPageMatchExpected(youTubeChannelUrl), "Expected URL: " + youTubeChannelUrl + ", but get " + getDriver().getCurrentUrl());
+        Assert.assertEquals(getDriver().getCurrentUrl(),
+                MainPage.YOUTUBE_CHANNEL_URL, "YouTube page was not opened (in the second tab)");
     }
 
     @Test
     public void shouldNavigateToAPITestingWithJavaFromFlipBox() {
-        mainPage.hidePopup();
+        mainPage.waitForPopup();
+        mainPage.clickButtonClosePopup();
         mainPage.navigateToAPITestingWithJavaFromFlipBox();
 
-        Assert.assertTrue(isCurrentPageMatchExpected(javaApiTestingUrl), "Expected URL: " + javaApiTestingUrl + ", but get " + getDriver().getCurrentUrl());
+        Assert.assertEquals(getDriver().getCurrentUrl(),
+                MainPage.JAVA_API_TESTING_URL, "Java API testing page wasn't opened");
+
     }
 
     @Test
     public void shouldNavigateToRobotFrameworkForAutomationFromCarousel() {
-        mainPage.hidePopup();
+        mainPage.waitForPopup();
+        mainPage.clickButtonClosePopup();
         mainPage.navigateToRobotFrameworkForAutomationFromCarousel();
 
-        Assert.assertTrue(isCurrentPageMatchExpected(seleniumTutorialUrl), "Expected URL: " + seleniumTutorialUrl + ", but get " + getDriver().getCurrentUrl());
-    }
-
-    public boolean isCurrentPageMatchExpected(String expectingUrl) {
-        try {
-            waitHelper.waitForGetURL(getDriver(), expectingUrl);
-            return true;
-        } catch (TimeoutException e) {
-            return false;
-        }
+        Assert.assertEquals(getDriver().getCurrentUrl(),
+                MainPage.ROBOT_FRAMEWORK_SELENIUM_TUTORIAL_URL, "Selenium tutorial website wasn't opened");
     }
 }
