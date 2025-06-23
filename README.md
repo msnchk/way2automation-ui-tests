@@ -100,3 +100,43 @@
 **Ожидаемый результат**:<br>
 
 1. Происходит редирект на страницу: https://www.selenium-tutorial.com/p/robot-framework-python-ui-api-automation
+
+
+### **TC-6. Проверка навигации по меню "Video Tutorial" до раздела "Cypress"**
+
+**Приоритет**: Высокий (P1)
+
+**Серьезность**: Значительная (S3)
+
+**Предусловия:**
+
+1. Открыта главная страница: https://www.way2automation.com
+2. Пользователь не авторизован.
+
+**Шаги**:
+
+1. Кликнуть на пункт меню "Video Tutorial".
+2. В выпадающем меню выбрать "Cypress".
+
+**Ожидаемый результат**:<br>
+
+1. Происходит редирект на страницу: https://www.selenium-tutorial.com/p/cypress-learn-in-depth-implementation-with-live-projects
+
+### **TC-7. Проверка функциональности кнопки "Register Now" на главной странице**
+
+**Приоритет**: Высокий (P1)
+
+**Серьезность**: Значительная(S3)
+
+**Предусловия:**
+
+1. Открыта главная страница: https://www.way2automation.com
+2. Пользователь не авторизован.
+
+**Шаги**:
+
+1. Нажать кнопку "Register Now"
+
+**Ожидаемый результат**:<br>
+
+1. Происходит переход на страницу: https://www.way2automation.com/lifetime-membership-club/
