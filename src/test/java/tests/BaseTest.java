@@ -27,11 +27,6 @@ public class BaseTest {
     private WebDriver createWebDriver() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments(
-                "--remote-allow-origins=*",
-                "--disable-gpu",
-                "--no-sandbox",
-                "--headless=new",
-                "--disable-dev-shm-usage",
                 "--window-size=1920,1080",
                 "--disable-blink-features=AutomationControlled"
         );

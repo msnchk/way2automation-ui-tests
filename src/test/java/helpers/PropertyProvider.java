@@ -6,11 +6,10 @@ import java.util.Properties;
 
 public class PropertyProvider {
     private static final String PROPERTIES_FILE = "env_local.properties";
-    private static final PropertyProvider INSTANCE = new PropertyProvider();
-    private final Properties properties = new Properties();
+    private static final Properties properties = new Properties();
 
-    private PropertyProvider() {
-        try (InputStream propertiesInputStream = getClass().getClassLoader().getResourceAsStream(PROPERTIES_FILE)) {
+    static {
+        try (InputStream propertiesInputStream = PropertyProvider.class.getClassLoader().getResourceAsStream(PROPERTIES_FILE)) {
             if (propertiesInputStream == null) {
                 throw new RuntimeException("Properties file not found: " + PROPERTIES_FILE);
             }
@@ -20,11 +19,7 @@ public class PropertyProvider {
         }
     }
 
-    public static PropertyProvider getInstance() {
-        return INSTANCE;
-    }
-
-    public String getProperty(String key) {
+    private static String getProperty(String key) {
         if (!properties.containsKey(key)) {
             throw new IllegalArgumentException("Ключ '" + key + "' отсутствует в properties");
         }
@@ -34,6 +29,11 @@ public class PropertyProvider {
         }
         return value;
     }
+
+    public static String baseUrl() {
+        return getProperty("way2automation.base.url");
+    }
+
 }
 
 

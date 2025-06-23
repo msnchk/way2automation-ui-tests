@@ -1,5 +1,6 @@
 package tests;
 
+import helpers.PropertyProvider;
 import helpers.WaitHelper;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -7,6 +8,7 @@ import org.testng.annotations.Test;
 import pages.MainPage;
 
 public class MainPageUITest extends BaseTest {
+    public static final String BASE_URL = PropertyProvider.baseUrl();
     private MainPage mainPage;
 
     @BeforeMethod
@@ -20,41 +22,43 @@ public class MainPageUITest extends BaseTest {
         mainPage.waitForPopup();
         mainPage.clickButtonRegisterNowOnPopup();
 
-        Assert.assertEquals(getDriver().getCurrentUrl(),
-                MainPage.MEMBERSHIP_CLUB_URL, "Membership club page wasn't opened");
+        Assert.assertEquals(
+                getDriver().getCurrentUrl(),
+                BASE_URL + "lifetime-membership-club/",
+                "Membership club page wasn't opened");
     }
 
     @Test
     public void shouldNavigateToSeleniumWithJavaFromMenu() {
-        mainPage.waitForPopup();
-        mainPage.clickButtonClosePopup();
         mainPage.navigateToSeleniumWithJavaFromMenu();
 
-        Assert.assertEquals(getDriver().getCurrentUrl(),
-                MainPage.SELENIUM_TRAINING_URL, "Selenium training page wasn't opened");
+        Assert.assertEquals(
+                getDriver().getCurrentUrl(),
+                BASE_URL + "selenium-training/online-training-webinars/",
+                "Selenium training page wasn't opened");
     }
 
     @Test
     public void shouldNavigateToYouTubeFromHeader() {
-        mainPage.waitForPopup();
-        mainPage.clickButtonClosePopup();
         mainPage.navigateToYouTubeFromHeaderIcon();
         WaitHelper.waitForNumberOfTabs(getDriver(), 2);
         Object[] windowHandles = getDriver().getWindowHandles().toArray();
         getDriver().switchTo().window((String) windowHandles[1]);
 
-        Assert.assertEquals(getDriver().getCurrentUrl(),
-                MainPage.YOUTUBE_CHANNEL_URL, "YouTube page was not opened (in the second tab)");
+        Assert.assertEquals(
+                getDriver().getCurrentUrl(),
+                "https://www.youtube.com/c/seleniumappiumtutorialtraining",
+                "YouTube page was not opened (in the second tab)");
     }
 
     @Test
     public void shouldNavigateToAPITestingWithJavaFromFlipBox() {
-        mainPage.waitForPopup();
-        mainPage.clickButtonClosePopup();
         mainPage.navigateToAPITestingWithJavaFromFlipBox();
 
-        Assert.assertEquals(getDriver().getCurrentUrl(),
-                MainPage.JAVA_API_TESTING_URL, "Java API testing page wasn't opened");
+        Assert.assertEquals(
+                getDriver().getCurrentUrl(),
+                BASE_URL + "soapui/rest-api-webservices-testing-training",
+                "Java API testing page wasn't opened");
 
     }
 
@@ -64,7 +68,9 @@ public class MainPageUITest extends BaseTest {
         mainPage.clickButtonClosePopup();
         mainPage.navigateToRobotFrameworkForAutomationFromCarousel();
 
-        Assert.assertEquals(getDriver().getCurrentUrl(),
-                MainPage.ROBOT_FRAMEWORK_SELENIUM_TUTORIAL_URL, "Selenium tutorial website wasn't opened");
+        Assert.assertEquals(
+                getDriver().getCurrentUrl(),
+                "https://www.selenium-tutorial.com/p/robot-framework-python-ui-api-automation",
+                "Selenium tutorial website wasn't opened");
     }
 }

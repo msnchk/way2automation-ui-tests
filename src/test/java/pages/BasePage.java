@@ -7,9 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public abstract class BasePage {
-    public static final String MEMBERSHIP_CLUB_URL = "https://www.way2automation.com/lifetime-membership-club/";
-    public static final String SELENIUM_TRAINING_URL = "https://www.way2automation.com/selenium-training/online-training-webinars/";
-    public static final String YOUTUBE_CHANNEL_URL = "https://www.youtube.com/c/seleniumappiumtutorialtraining";
     protected WebDriver driver;
     protected Actions actions;
 
@@ -41,6 +38,7 @@ public abstract class BasePage {
     }
 
     public void waitForPopup() {
+        actions.moveByOffset(10, 10).click().perform();
         actions.sendKeys(Keys.PAGE_DOWN).sendKeys(Keys.PAGE_UP).perform();
         WaitHelper.waitForElementToBeVisible(driver, popup);
     }
