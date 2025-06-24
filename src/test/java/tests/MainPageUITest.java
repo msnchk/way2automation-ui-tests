@@ -19,7 +19,7 @@ public class MainPageUITest extends BaseTest {
         mainPage = new MainPage(getDriver(), getActions());
     }
 
-    @Test
+    @Test(description = "TC-1: Verify that the popup appears and 'Register Now' button navigates to Membership page")
     @Feature("Popup Handling")
     @Story("Clicking 'Register Now' in the popup navigates to Membership page")
     @Severity(SeverityLevel.NORMAL)
@@ -33,7 +33,7 @@ public class MainPageUITest extends BaseTest {
                 "Membership club page wasn't opened");
     }
 
-    @Test
+    @Test(description = "TC-2: Verify navigation from top menu to 'Selenium with Java' course page")
     @Feature("Top Menu Navigation")
     @Story("Navigate to Selenium with Java course from top menu")
     @Severity(SeverityLevel.NORMAL)
@@ -46,7 +46,7 @@ public class MainPageUITest extends BaseTest {
                 "Selenium training page wasn't opened");
     }
 
-    @Test
+    @Test(description = "TC-3: Verify that clicking YouTube icon in the header navigates to Way2Automation channel")
     @Feature("Header Links")
     @Story("Clicking YouTube icon opens Way2Automation channel in a new tab")
     @Severity(SeverityLevel.MINOR)
@@ -62,7 +62,7 @@ public class MainPageUITest extends BaseTest {
                 "YouTube page was not opened (in the second tab)");
     }
 
-    @Test
+    @Test(description = "TC-4: Verify that 'Read more' button on 'API Testing with Java' flip box navigates to this course page")
     @Feature("Course Cards")
     @Story("Navigate to API Testing with Java course from flip box")
     @Severity(SeverityLevel.NORMAL)
@@ -76,7 +76,7 @@ public class MainPageUITest extends BaseTest {
 
     }
 
-    @Test
+    @Test(description = "TC-5: Verify that 'Get started' button on 'Robot Framework' carousel block navigates to this course page")
     @Feature("Carousel Navigation")
     @Story("Navigate to Robot Framework course from carousel block")
     @Severity(SeverityLevel.NORMAL)
@@ -91,7 +91,7 @@ public class MainPageUITest extends BaseTest {
                 "Selenium tutorial website wasn't opened");
     }
 
-    @Test
+    @Test(description = "TC-6: Verify navigation from top menu to 'Cypress' course page")
     @Feature("Top Menu Navigation")
     @Story("Navigate to Cypress course from top menu")
     @Severity(SeverityLevel.NORMAL)
@@ -104,7 +104,7 @@ public class MainPageUITest extends BaseTest {
                 "Selenium tutorial website wasn't opened");
     }
 
-    @Test
+    @Test(description = "TC-7: Verify that 'Register Now' button on Main page navigates to Membership page")
     @Feature("Buttons")
     @Story("Clicking 'Register Now' button on main page navigates to Membership page")
     @Severity(SeverityLevel.NORMAL)
