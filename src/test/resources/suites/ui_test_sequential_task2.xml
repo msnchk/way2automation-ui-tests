@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="MainPageUITest_Tests_Without_Popup_Sequential">
+    <test name="NoPopupUITestsSequential">
+        <classes>
+            <class name="tests.MainPageUITest">
+                <methods>
+                    <include name="shouldNavigateToSeleniumWithJavaFromMenu"/>
+                    <include name="shouldNavigateToYouTubeFromHeader"/>
+                    <include name="shouldNavigateToAPITestingWithJavaFromFlipBox"/>
+                    <include name="shouldNavigateToCypressTutorialFromMenu"/>
+                    <include name="shouldClickRegisterNowAndNavigateToMembershipPage"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

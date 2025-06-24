@@ -1,11 +1,13 @@
 package pages;
 
 import helpers.PropertyProvider;
-import org.openqa.selenium.JavascriptExecutor;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+
+import java.time.Duration;
 
 public class MainPage extends BasePage {
     public static final String MAIN_PAGE_URL = PropertyProvider.baseUrl();
@@ -16,27 +18,34 @@ public class MainPage extends BasePage {
     @FindBy(xpath = "//a[contains(@href, 'rest-api-webservices-testing-training') and normalize-space(text())='Read More']")
     private WebElement readMoreApiTestingWithJavaButton;
 
-    @FindBy(xpath = "//div[normalize-space(text())='Testing RestFul webservices using XML and Json request.']")
-    private WebElement blockingReadMoreButtonOverlay;
-
     @FindBy(xpath = "//h2[@class='elementor-image-box-title' and normalize-space(text())='Most Popular Software Testing Courses']")
     private WebElement mostPopularCoursesBlock;
 
     @FindBy(xpath = "//a[contains(@class, 'pp-info-box-button') and contains(@href, 'robot-framework-python-ui-api-automation')]")
     private WebElement robotFrameworkForAutomationButton;
 
+    @FindBy(xpath = "//a[contains(@class, 'elementor-button') and normalize-space(text())='Register Now']")
+    private WebElement registerNowMainPageButton;
+
     public MainPage(WebDriver driver, Actions actions) {
         super(driver, actions);
     }
 
+    @Step("Navigate to 'API Testing with Java' course from the flip box")
     public void navigateToAPITestingWithJavaFromFlipBox() {
         clickWhenClickable(ApiTestingWithJavaFlipBox);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].style.display = 'none';", blockingReadMoreButtonOverlay);
+        actions.pause(Duration.ofMillis(300)).perform();
         clickWhenClickable(readMoreApiTestingWithJavaButton);
     }
 
+    @Step("Navigate to 'Robot Framework for Automation' course from the carousel")
     public void navigateToRobotFrameworkForAutomationFromCarousel() {
         actions.scrollToElement(mostPopularCoursesBlock);
         clickWhenClickable(robotFrameworkForAutomationButton);
+    }
+
+    @Step("Click 'Register Now' button on the main page")
+    public void clickButtonRegisterNowOnMainPage() {
+        clickWhenClickable(registerNowMainPageButton);
     }
 }
