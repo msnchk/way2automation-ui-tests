@@ -22,10 +22,10 @@ public class LoginPageUITest extends BaseTest {
     @Test(dataProvider = "loginData", dataProviderClass = LoginDataProvider.class)
     public void shouldTestLoginWithValidAndInvalidData(LoginDataCase data) {
         loginPage.login(data.getUsername(), data.getPassword(), data.getUsernameDescription());
+        SoftAssert soft = new SoftAssert();
 
         if (data.isExpectedSuccess()) {
             LoginConfirmPage loginConfirmPage = new LoginConfirmPage(getDriver(), getActions());
-            SoftAssert soft = new SoftAssert();
             soft.assertEquals(
                     getDriver().getCurrentUrl(),
                     LoginConfirmPage.LOGIN_CONFIRM_URL,
@@ -33,18 +33,23 @@ public class LoginPageUITest extends BaseTest {
             soft.assertTrue(
                     loginConfirmPage.isConfirmingTextDisplayed(),
                     "Text about success login on confirming page wasn't displayed");
-            soft.assertAll();
         } else {
+            soft.assertEquals(
+                    getDriver().getCurrentUrl(),
+                    LoginPage.LOGIN_FORM_URL,
+                    "There was unexpected redirect to the page that confirms authorization.");
+
             if (data.isButtonShouldBeEnabled()) {
-                Assert.assertEquals(
+                soft.assertEquals(
                         loginPage.getAlertText(),
                         data.getExpectedErrorMessage(),
                         "Alert text doesn't match expected");
             } else {
-                Assert.assertFalse(
+                soft.assertFalse(
                         loginPage.isButtonLoginEnabled(),
-                        "Button login shouldn't be enable after this input");
+                        "Login button shouldn't be enable after this input");
             }
         }
+        soft.assertAll();
     }
 }
