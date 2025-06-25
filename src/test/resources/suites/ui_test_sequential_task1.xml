@@ -2,7 +2,7 @@
 <suite name="All_MainPageUITest_Sequential">
     <test name="AllMainPageUITestSequential">
         <classes>
-            <class name="tests.MainPageUITest"/>
+            <class name="tests.way2automation.MainPageUITest"/>
         </classes>
     </test>
 </suite>

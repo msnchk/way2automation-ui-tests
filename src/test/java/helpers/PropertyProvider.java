@@ -34,6 +34,9 @@ public class PropertyProvider {
         return getProperty("way2automation.base.url");
     }
 
+    public static String loginFormUrl() {
+        return getProperty("angularjs-protractor.registration.url");
+    }
 }
 
 

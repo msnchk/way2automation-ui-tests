@@ -1,4 +1,4 @@
-package pages;
+package pages.way2automation;
 
 import helpers.PropertyProvider;
 import io.qameta.allure.Step;

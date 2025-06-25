@@ -1,4 +1,4 @@
-package pages;
+package pages.way2automation;
 
 import helpers.WaitHelper;
 import io.qameta.allure.Step;

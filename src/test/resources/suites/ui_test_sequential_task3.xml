@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="All_MainPageUITest_Sequential">
+    <test name="AllMainPageUITestSequential">
+        <classes>
+            <class name="tests.registration.LoginPageUITest"/>
+        </classes>
+    </test>
+</suite>

@@ -1,4 +1,4 @@
-package tests;
+package tests.way2automation;
 
 import helpers.PropertyProvider;
 import helpers.WaitHelper;
@@ -6,7 +6,8 @@ import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.MainPage;
+import pages.way2automation.MainPage;
+import tests.BaseTest;
 
 @Epic("Way2Automation Main Page UI")
 public class MainPageUITest extends BaseTest {
