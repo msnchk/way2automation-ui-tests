@@ -6,10 +6,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import pages.BasePage;
 
 import java.util.List;
 
-public class LoginPage extends BaseLoginPage {
+public class LoginPage extends BasePage {
     public static final String LOGIN_FORM_URL = LoginConfirmPage.LOGIN_CONFIRM_URL + "login";
 
     @FindBy(id = "username")

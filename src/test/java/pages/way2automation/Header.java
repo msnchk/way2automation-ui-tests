@@ -5,12 +5,9 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import pages.BasePage;
 
-public abstract class BasePage {
-    protected WebDriver driver;
-    protected Actions actions;
-
+public abstract class Header extends BasePage {
     @FindBy(css = ".dialog-widget-content.dialog-lightbox-widget-content")
     private WebElement popup;
 
@@ -38,10 +35,8 @@ public abstract class BasePage {
     @FindBy(css = "a[aria-label='YouTube']")
     private WebElement youTubeIcon;
 
-    public BasePage(WebDriver driver, Actions actions) {
-        this.driver = driver;
-        this.actions = actions;
-        PageFactory.initElements(driver, this);
+    public Header(WebDriver driver, Actions actions) {
+        super(driver, actions);
     }
 
     @Step("Wait for the popup to appear")

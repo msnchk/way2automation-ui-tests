@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.time.Duration;
 
-public class MainPage extends BasePage {
+public class MainPage extends Header {
     public static final String MAIN_PAGE_URL = PropertyProvider.baseUrl();
 
     @FindBy(xpath = "//h3[normalize-space(text())='API Testing with Java']")
