@@ -9,7 +9,7 @@ public class LoginDataCase {
     private String username;
     private String password;
     private String usernameDescription;
-    private boolean expectedSuccess;
-    private String expectedErrorMessage;
     private boolean buttonShouldBeEnabled;
+    private String expectedErrorMessage;
+    private String expectedURL;
 }
