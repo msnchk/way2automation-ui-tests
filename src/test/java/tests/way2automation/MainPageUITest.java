@@ -1,4 +1,4 @@
-package tests;
+package tests.way2automation;
 
 import helpers.PropertyProvider;
 import helpers.WaitHelper;
@@ -6,7 +6,8 @@ import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.MainPage;
+import pages.way2automation.MainPage;
+import tests.BaseTest;
 
 @Epic("Way2Automation Main Page UI")
 public class MainPageUITest extends BaseTest {
@@ -24,8 +25,8 @@ public class MainPageUITest extends BaseTest {
     @Story("Clicking 'Register Now' in the popup navigates to Membership page")
     @Severity(SeverityLevel.NORMAL)
     public void shouldWaitPopupAndNavigateOnRegisterNowClick() {
-        mainPage.waitForPopup();
-        mainPage.clickButtonRegisterNowOnPopup();
+        mainPage.getPopup().waitForPopup();
+        mainPage.getPopup().clickButtonRegisterNowOnPopup();
 
         Assert.assertEquals(
                 getDriver().getCurrentUrl(),
@@ -38,7 +39,7 @@ public class MainPageUITest extends BaseTest {
     @Story("Navigate to Selenium with Java course from top menu")
     @Severity(SeverityLevel.NORMAL)
     public void shouldNavigateToSeleniumWithJavaFromMenu() {
-        mainPage.navigateToSeleniumWithJavaFromMenu();
+        mainPage.getHeader().navigateToSeleniumWithJavaFromMenu();
 
         Assert.assertEquals(
                 getDriver().getCurrentUrl(),
@@ -51,7 +52,7 @@ public class MainPageUITest extends BaseTest {
     @Story("Clicking YouTube icon opens Way2Automation channel in a new tab")
     @Severity(SeverityLevel.MINOR)
     public void shouldNavigateToYouTubeFromHeader() {
-        mainPage.navigateToYouTubeFromHeaderIcon();
+        mainPage.getHeader().navigateToYouTubeFromHeaderIcon();
         WaitHelper.waitForNumberOfTabs(getDriver(), 2);
         Object[] windowHandles = getDriver().getWindowHandles().toArray();
         getDriver().switchTo().window((String) windowHandles[1]);
@@ -81,8 +82,8 @@ public class MainPageUITest extends BaseTest {
     @Story("Navigate to Robot Framework course from carousel block")
     @Severity(SeverityLevel.NORMAL)
     public void shouldNavigateToRobotFrameworkForAutomationFromCarousel() {
-        mainPage.waitForPopup();
-        mainPage.clickButtonClosePopup();
+        mainPage.getPopup().waitForPopup();
+        mainPage.getPopup().clickButtonClosePopup();
         mainPage.navigateToRobotFrameworkForAutomationFromCarousel();
 
         Assert.assertEquals(
@@ -96,7 +97,7 @@ public class MainPageUITest extends BaseTest {
     @Story("Navigate to Cypress course from top menu")
     @Severity(SeverityLevel.NORMAL)
     public void shouldNavigateToCypressTutorialFromMenu() {
-        mainPage.navigateToCypressTutorialFromMenu();
+        mainPage.getHeader().navigateToCypressTutorialFromMenu();
 
         Assert.assertEquals(
                 getDriver().getCurrentUrl(),

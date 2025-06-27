@@ -2,7 +2,7 @@
 <suite name="MainPageUITest_Tests_Without_Popup_Sequential">
     <test name="NoPopupUITestsSequential">
         <classes>
-            <class name="tests.MainPageUITest">
+            <class name="tests.way2automation.MainPageUITest">
                 <methods>
                     <include name="shouldNavigateToSeleniumWithJavaFromMenu"/>
                     <include name="shouldNavigateToYouTubeFromHeader"/>
