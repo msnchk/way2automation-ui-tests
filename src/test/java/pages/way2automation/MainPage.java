@@ -52,6 +52,12 @@ public class MainPage extends BasePage {
         clickWhenClickable(readMoreApiTestingWithJavaButton);
     }
 
+    @Step("Navigate to 'API Testing with Java' course from the flip box")
+    public void failNavigateToAPITestingWithJavaFromFlipBox() {
+        clickWhenClickable(ApiTestingWithJavaFlipBox);
+        readMoreApiTestingWithJavaButton.click();
+    }
+
     @Step("Navigate to 'Robot Framework for Automation' course from the carousel")
     public void navigateToRobotFrameworkForAutomationFromCarousel() {
         actions.scrollToElement(mostPopularCoursesBlock);
