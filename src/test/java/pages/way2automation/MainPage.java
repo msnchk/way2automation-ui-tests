@@ -6,11 +6,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import pages.BasePage;
 
 import java.time.Duration;
 
-public class MainPage extends Header {
+public class MainPage extends BasePage {
     public static final String MAIN_PAGE_URL = PropertyProvider.baseUrl();
+
+    private final Header header;
+    private final Popup popup;
 
     @FindBy(xpath = "//h3[normalize-space(text())='API Testing with Java']")
     private WebElement ApiTestingWithJavaFlipBox;
@@ -29,6 +33,16 @@ public class MainPage extends Header {
 
     public MainPage(WebDriver driver, Actions actions) {
         super(driver, actions);
+        this.header = new Header(driver, actions);
+        this.popup = new Popup(driver, actions);
+    }
+
+    public Header getHeader() {
+        return header;
+    }
+
+    public Popup getPopup() {
+        return popup;
     }
 
     @Step("Navigate to 'API Testing with Java' course from the flip box")

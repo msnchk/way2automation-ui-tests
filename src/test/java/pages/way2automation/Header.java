@@ -1,22 +1,12 @@
 package pages.way2automation;
 
-import helpers.WaitHelper;
 import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import pages.BasePage;
 
-public abstract class Header extends BasePage {
-    @FindBy(css = ".dialog-widget-content.dialog-lightbox-widget-content")
-    private WebElement popup;
-
-    @FindBy(css = ".dialog-close-button.dialog-lightbox-close-button")
-    private WebElement closePopupButton;
-
-    @FindBy(xpath = "//a[.//span[normalize-space(text())='Register Now!']]")
-    private WebElement registerNowPopupButton;
-
+public class Header extends BasePage {
     @FindBy(xpath = "//*[@id='ast-desktop-header']//span[@class='menu-text' and normalize-space(text())='All Courses']")
     private WebElement allCoursesMenu;
 
@@ -39,18 +29,6 @@ public abstract class Header extends BasePage {
         super(driver, actions);
     }
 
-    @Step("Wait for the popup to appear")
-    public void waitForPopup() {
-        actions.moveByOffset(10, 10).click().perform();
-        actions.sendKeys(Keys.PAGE_DOWN).sendKeys(Keys.PAGE_UP).perform();
-        WaitHelper.waitForElementToBeVisible(driver, popup);
-    }
-
-    @Step("Click 'Register Now!' button on the popup")
-    public void clickButtonRegisterNowOnPopup() {
-        clickWhenClickable(registerNowPopupButton);
-    }
-
     @Step("Navigate to 'Selenium with Java' from the top menu")
     public void navigateToSeleniumWithJavaFromMenu() {
        actions.moveToElement(allCoursesMenu).perform();
@@ -67,17 +45,5 @@ public abstract class Header extends BasePage {
     @Step("Click the YouTube icon in the header")
     public void navigateToYouTubeFromHeaderIcon() {
         clickWhenClickable(youTubeIcon);
-    }
-
-    @Step("Click the 'Close' button on the popup")
-    public void clickButtonClosePopup() {
-        clickWhenClickable(closePopupButton);
-    }
-
-    protected void clickWhenClickable(WebElement element) {
-        WaitHelper.waitForElementToBeVisible(driver, element);
-        WaitHelper.waitForElementToBeClickable(driver, element);
-        actions.scrollToElement(element);
-        element.click();
     }
 }
