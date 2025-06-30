@@ -37,6 +37,14 @@ public class PropertyProvider {
     public static String loginFormUrl() {
         return getProperty("angularjs-protractor.registration.url");
     }
+
+    public static String sqlExBaseUrl() { return getProperty("sqlex.base.url"); }
+
+    public static String sqlExLogin() { return getProperty("sqlex.login"); }
+
+    public static String sqlExPassword() { return getProperty("sqlex.password"); }
+
+    public static String sqlExCookieFailPath() {return  getProperty("sqlex.cookie.filepath"); };
 }
 
 

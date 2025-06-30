@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Sqlex_LoginUITest_Sequential">
+    <test name="SqlexLoginUITestSequential">
+        <classes>
+            <class name="tests.sqlex.SqlExLoginUITest"/>
+        </classes>
+    </test>
+</suite>
