@@ -1,5 +1,6 @@
 package pages.sqlex;
 
+import helpers.CookiesHelper;
 import helpers.PropertyProvider;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -26,14 +27,25 @@ public class SqlExMainPage extends BasePage {
         super(driver, actions);
     }
 
-    public void sqlExLogIn(String username, String password) {
-        usernameInput.sendKeys(username);
-        passwordInput.sendKeys(password);
-        submitButton.click();
-        actions.pause(500).perform();
+    public void sqlExAuthorize(String username, String password) {
+        if (CookiesHelper.cookieFileExists()) {
+            driver.manage().deleteAllCookies();
+            CookiesHelper.loadCookiesFromFile(driver);
+            driver.navigate().refresh();
+        } else {
+            sqlExLogIn(username, password);
+            CookiesHelper.saveCookiesToFile(driver);
+        }
     }
 
     public boolean isConfirmingLoginElementDisplayed() {
         return confirmingLoginElement.isDisplayed();
+    }
+
+    private void sqlExLogIn(String username, String password) {
+        usernameInput.sendKeys(username);
+        passwordInput.sendKeys(password);
+        submitButton.click();
+        actions.pause(500).perform();
     }
 }

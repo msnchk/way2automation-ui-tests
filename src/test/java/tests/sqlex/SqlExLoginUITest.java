@@ -19,14 +19,8 @@ public class SqlExLoginUITest extends BaseTest {
 
     @Test
     public void shouldLoginSuccessfully() {
-        if (CookiesHelper.cookieFileExists()) {
-            getDriver().manage().deleteAllCookies();
-            CookiesHelper.loadCookiesFromFile(getDriver());
-            getDriver().navigate().refresh();
-        } else {
-            sqlExMainPage.sqlExLogIn(PropertyProvider.sqlExLogin(), PropertyProvider.sqlExPassword());
-            CookiesHelper.saveCookiesToFile(getDriver());
-        }
+        sqlExMainPage.sqlExAuthorize(PropertyProvider.sqlExLogin(), PropertyProvider.sqlExPassword());
+
         Assert.assertTrue(
                 sqlExMainPage.isConfirmingLoginElementDisplayed(),
                 "Element that confirms successful login wasn't displayed.");
