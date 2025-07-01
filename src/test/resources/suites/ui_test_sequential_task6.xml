@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="LoginPageUITest_Using_JavascriptExecutor">
+    <test name="LoginPageUITest_Using_JavascriptExecutor">
+        <classes>
+            <class name="tests.registration.LoginPageUITest">
+                <methods>
+                    <include name="shouldDisplayInvalidTouchedUsernameError"/>
+                    <include name="shouldCheckScrollOnPage"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

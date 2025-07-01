@@ -1,6 +1,5 @@
 package tests.sqlex;
 
-import helpers.CookiesHelper;
 import helpers.PropertyProvider;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
