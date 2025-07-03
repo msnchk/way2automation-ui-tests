@@ -1,0 +1,33 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Remote_MainPageUITest_and_MainPageUIFailTest_parallel" parallel="tests" thread-count="2">
+    <listeners>
+        <listener class-name="listeners.RetryListener"/>
+    </listeners>
+    <test name="RemoteChromeTests">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="tests.way2automation.MainPageUITest">
+                <methods>
+                    <include name="shouldNavigateToSeleniumWithJavaFromMenu"/>
+                    <include name="shouldNavigateToYouTubeFromHeader"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="RemoteFirefoxTests">
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="tests.way2automation.MainPageUITest">
+                <methods>
+                    <include name="shouldClickRegisterNowAndNavigateToMembershipPage"/>
+                </methods>
+            </class>
+            <class name="tests.way2automation.MainPageUIFailTest">
+                <methods>
+                    <include name="shouldNavigateToAPITestingWithJavaFromFlipBox"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
