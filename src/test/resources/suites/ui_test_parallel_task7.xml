@@ -1,0 +1,27 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Remote_MainPageUITest_Parallel_No_popup" parallel="tests" thread-count="2">
+    <test name="RemoteChromeTests">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="tests.way2automation.MainPageUITest">
+                <methods>
+                    <include name="shouldNavigateToAPITestingWithJavaFromFlipBox"/>
+                    <include name="shouldNavigateToSeleniumWithJavaFromMenu"/>
+                    <include name="shouldNavigateToYouTubeFromHeader"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="RemoteFirefoxTests">
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="tests.way2automation.MainPageUITest">
+                <methods>
+                    <include name="shouldNavigateToCypressTutorialFromMenu"/>
+                    <include name="shouldClickRegisterNowAndNavigateToMembershipPage"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

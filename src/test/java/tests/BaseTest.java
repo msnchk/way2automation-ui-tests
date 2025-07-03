@@ -1,9 +1,9 @@
 package tests;
 
+import factory.WebDriverFactory;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -12,8 +12,9 @@ public class BaseTest {
     private Actions actions;
 
     @BeforeMethod
-    public void setup() {
-        driver = createWebDriver();
+    public void setup(ITestContext context) {
+        String browser = context.getCurrentXmlTest().getParameter("browser");
+        driver = WebDriverFactory.create(browser);
         actions = new Actions(driver);
     }
 
@@ -22,15 +23,6 @@ public class BaseTest {
         if (driver != null) {
             driver.quit();
         }
-    }
-
-    private WebDriver createWebDriver() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments(
-                "--window-size=1920,1080",
-                "--disable-blink-features=AutomationControlled"
-        );
-        return new ChromeDriver(options);
     }
 
     public WebDriver getDriver() {
