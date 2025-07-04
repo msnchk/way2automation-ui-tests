@@ -1,0 +1,41 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="MainPageUITest_Parallel_With_Choice_Of_Execution_type" parallel="tests" thread-count="2">
+<!--    <parameter name="executionType" value="remote"/>-->
+    <parameter name="executionType" value="local"/>
+
+    <test name="ChromeTests">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="tests.way2automation.MainPageUITest">
+                <methods>
+                    <include name="shouldNavigateToAPITestingWithJavaFromFlipBox"/>
+                    <include name="shouldNavigateToYouTubeFromHeader"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="FirefoxTests">
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="tests.way2automation.MainPageUITest">
+                <methods>
+                    <include name="shouldNavigateToCypressTutorialFromMenu"/>
+                    <include name="shouldClickRegisterNowAndNavigateToMembershipPage"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="EdgeTests">
+        <parameter name="browser" value="edge"/>
+        <classes>
+            <class name="tests.way2automation.MainPageUITest">
+                <methods>
+                    <include name="shouldNavigateToCypressTutorialFromMenu"/>
+                    <include name="shouldClickRegisterNowAndNavigateToMembershipPage"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
