@@ -32,9 +32,9 @@ public class PropertyProvider {
 
     public static String gridUrl() { return getProperty("grid.url"); }
 
-    public static String baseUrl() {
-        return getProperty("way2automation.base.url");
-    }
+    public static String baseUrl() { return getProperty("way2automation.base.url"); }
+
+    public static String jqueryBaseUrl() {return getProperty("jquery.base.url"); }
 
     public static String loginFormUrl() {
         return getProperty("angularjs-protractor.registration.url");
