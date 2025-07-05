@@ -13,8 +13,9 @@ public class BaseTest {
 
     @BeforeMethod
     public void setup(ITestContext context) {
+        String executionType = context.getCurrentXmlTest().getParameter("executionType");
         String browser = context.getCurrentXmlTest().getParameter("browser");
-        driver = WebDriverFactory.create(browser);
+        driver = WebDriverFactory.createDriver(executionType, browser);
         actions = new Actions(driver);
     }
 

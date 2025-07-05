@@ -48,7 +48,7 @@ public class MainPage extends BasePage {
     @Step("Navigate to 'API Testing with Java' course from the flip box")
     public void navigateToAPITestingWithJavaFromFlipBox() {
         clickWhenClickable(ApiTestingWithJavaFlipBox);
-        actions.pause(Duration.ofMillis(300)).perform();
+        actions.pause(Duration.ofMillis(600)).perform();
         clickWhenClickable(readMoreApiTestingWithJavaButton);
     }
 
