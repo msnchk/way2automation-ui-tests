@@ -45,4 +45,8 @@ public abstract class BasePage {
         JavascriptExecutor js = (JavascriptExecutor)driver;
         js.executeScript("arguments[0].blur();", element);
     }
+
+    protected void switchToIframe(WebElement frame) {
+        driver.switchTo().frame(frame);
+    }
 }
