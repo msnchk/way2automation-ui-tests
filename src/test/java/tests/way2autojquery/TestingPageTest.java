@@ -67,7 +67,6 @@ public class TestingPageTest extends BaseTest {
         AlertPage alertPage = new AlertPage(getDriver(), getActions());
         alertPage.openInputAlertTab();
         alertPage.clickDisplayAlertButton();
-        WaitHelper.waitForAlert(getDriver());
         String name = "Some User";
         alertPage.enterUserNameInAlert(name);
 

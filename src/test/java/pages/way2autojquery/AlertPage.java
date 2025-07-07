@@ -1,6 +1,7 @@
 package pages.way2autojquery;
 
 import helpers.PropertyProvider;
+import helpers.WaitHelper;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -37,6 +38,7 @@ public class AlertPage extends BasePage {
     }
 
     public void enterUserNameInAlert(String name) {
+        WaitHelper.waitForAlert(driver);
         Alert alert = driver.switchTo().alert();
         alert.sendKeys(name);
         alert.accept();
