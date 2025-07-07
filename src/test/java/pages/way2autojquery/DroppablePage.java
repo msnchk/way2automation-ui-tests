@@ -24,7 +24,7 @@ public class DroppablePage extends BasePage {
     }
 
     public void moveDraggableElementToDroppableArea() {
-        switchToIframe();
+        switchToIframe(iframe);
         actions
                 .dragAndDrop(draggable, droppable)
                 .perform();
@@ -33,9 +33,5 @@ public class DroppablePage extends BasePage {
 
     public String getTextFromDroppable() {
         return droppable.getText();
-    }
-
-    private void switchToIframe() {
-        driver.switchTo().frame(iframe);
     }
 }
