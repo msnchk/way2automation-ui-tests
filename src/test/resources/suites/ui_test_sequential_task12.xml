@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="TestingPageTest_Sequential">
+    <!--    <parameter name="executionType" value="remote"/>-->
+    <parameter name="executionType" value="local"/>
+
+    <test name="ChromeTestingPageTests">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="tests.way2autojquery.TestingPageTest">
+                <methods>
+                    <include name="shouldEnterUsernameInAlert"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
