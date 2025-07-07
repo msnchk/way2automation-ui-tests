@@ -25,4 +25,8 @@ public class WaitHelper {
     public static void waitForNumberOfTabs(WebDriver driver, int numberOfTabs) {
         getWait(driver).until(ExpectedConditions.numberOfWindowsToBe(numberOfTabs));
     }
+
+    public static void waitForAlert(WebDriver driver) {
+        getWait(driver).until(ExpectedConditions.alertIsPresent());
+    }
 }

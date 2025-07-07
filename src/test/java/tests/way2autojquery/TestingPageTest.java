@@ -1,8 +1,10 @@
 package tests.way2autojquery;
 
+import helpers.WaitHelper;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+import pages.way2autojquery.AlertPage;
 import pages.way2autojquery.DroppablePage;
 import pages.way2autojquery.FramesAndWindowsPage;
 import pages.way2autojquery.NewTabPage;
@@ -57,5 +59,22 @@ public class TestingPageTest extends BaseTest {
                 NewTabPage.NEW_TAB_URL,
                 "Third tab didn't open correctly");
         soft.assertAll();
+    }
+
+    @Test
+    public void shouldEnterUsernameInAlert() {
+        getDriver().get(AlertPage.ALERT_PAGE_URL);
+        AlertPage alertPage = new AlertPage(getDriver(), getActions());
+        alertPage.openInputAlertTab();
+        alertPage.clickDisplayAlertButton();
+        WaitHelper.waitForAlert(getDriver());
+        String name = "Some User";
+        alertPage.enterUserNameInAlert(name);
+
+        Assert.assertEquals(
+                alertPage.getWelcomeText(),
+                alertPage.getExpectedText(name),
+                "Displayed greeting text doesn't match expected"
+        );
     }
 }
