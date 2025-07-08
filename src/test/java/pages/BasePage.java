@@ -37,6 +37,7 @@ public abstract class BasePage {
         return scrollWidth > clientWidth;
     }
 
+    @Step("Get count of opened windows/tabs")
     public int getWindowCount() {
         return driver.getWindowHandles().size();
     }

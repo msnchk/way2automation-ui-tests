@@ -32,6 +32,7 @@ public class DroppablePage extends BasePage {
                 .perform();
     }
 
+    @Step("Get displayed text from droppable area")
     public String getTextFromDroppable() {
         return droppable.getText();
     }

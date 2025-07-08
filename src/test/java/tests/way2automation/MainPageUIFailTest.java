@@ -43,7 +43,6 @@ public class MainPageUIFailTest extends BaseTest {
                 getDriver().getCurrentUrl(),
                 BASE_URL + "soapui/rest-api-webservices-testing-training",
                 "Java API testing page wasn't opened");
-
     }
 
     @Test(description = "TC-6-fail: Verify navigation from top menu to 'Cypress' course page")

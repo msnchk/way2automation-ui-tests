@@ -37,8 +37,8 @@ public class TestingPageTest extends BaseTest {
         getDriver().get(FramesAndWindowsPage.FRAMES_AND_WINDOWS_URL);
         FramesAndWindowsPage framesAndWindowsPage = new FramesAndWindowsPage(getDriver(), getActions());
         NewTabPage newTabPage = framesAndWindowsPage.clickOpenNewTabAndSwitch();
-        SoftAssert soft = new SoftAssert();
 
+        SoftAssert soft = new SoftAssert();
         soft.assertEquals(
                 newTabPage.getWindowCount(),
                 2,
@@ -47,7 +47,7 @@ public class TestingPageTest extends BaseTest {
         soft.assertEquals(
                 getDriver().getCurrentUrl(),
                 NewTabPage.NEW_TAB_URL,
-                "First new tab didn't open correctly"
+                "Second new tab didn't open correctly"
         );
         newTabPage.clickOpenNewTabAndSwitch();
 
@@ -66,7 +66,7 @@ public class TestingPageTest extends BaseTest {
     @Test(description = "Verify that user can enter a name in alert and get a personalized greeting")
     @Feature("Alerts")
     @Story("User interacts with alert and enters his name")
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.NORMAL)
     public void shouldEnterUsernameInAlert() {
         getDriver().get(AlertPage.ALERT_PAGE_URL);
         AlertPage alertPage = new AlertPage(getDriver(), getActions());

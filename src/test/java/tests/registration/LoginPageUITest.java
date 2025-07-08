@@ -40,7 +40,6 @@ public class LoginPageUITest extends BaseTest {
                 loginPage.getAlertTextIfPresent(),
                 data.getExpectedErrorMessage(),
                 "Alert's presence doesn't match expected"
-
         );
         soft.assertEquals(
                 getDriver().getCurrentUrl(),
