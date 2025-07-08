@@ -1,6 +1,5 @@
 package tests.way2autojquery;
 
-import helpers.WaitHelper;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
