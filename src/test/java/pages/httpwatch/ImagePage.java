@@ -1,5 +1,6 @@
 package pages.httpwatch;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,6 +16,7 @@ public class ImagePage extends BasePage {
         super(driver, actions);
     }
 
+    @Step("Check if image is fully loaded and displayed on page")
     public boolean isImageLoaded() {
         return (Boolean)((JavascriptExecutor) driver)
                 .executeScript("return arguments[0].complete && arguments[0].naturalWidth > 0", image);

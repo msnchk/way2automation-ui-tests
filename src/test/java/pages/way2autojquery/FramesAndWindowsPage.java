@@ -1,6 +1,7 @@
 package pages.way2autojquery;
 
 import helpers.PropertyProvider;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -20,9 +21,11 @@ public class FramesAndWindowsPage extends BasePage {
         super(driver, actions);
     }
 
-    public NewTabPage clickOpenNewTab() {
+    @Step("Click 'Open new tab' inside frame and switch on last tab")
+    public NewTabPage clickOpenNewTabAndSwitch() {
         switchToIframe(iframe);
         openNewTabText.click();
+        switchToLastTab();
         return new NewTabPage(driver, actions);
     }
 }

@@ -1,5 +1,6 @@
 package tests.way2autojquery;
 
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -9,9 +10,13 @@ import pages.way2autojquery.FramesAndWindowsPage;
 import pages.way2autojquery.NewTabPage;
 import tests.BaseTest;
 
+@Epic("Way2Automation way2auto_jquery UI Testing")
 public class TestingPageTest extends BaseTest {
 
-    @Test
+    @Test(description = "Verify that a draggable element can be dropped onto the target area")
+    @Feature("Drag and Drop")
+    @Story("User can drag an element and drop it onto the droppable area")
+    @Severity(SeverityLevel.NORMAL)
     public void shouldMoveDraggableElementToDroppableArea() {
         getDriver().get(DroppablePage.DROPPABLE_URL);
         DroppablePage droppablePage = new DroppablePage(getDriver(), getActions());
@@ -24,35 +29,33 @@ public class TestingPageTest extends BaseTest {
         );
     }
 
-    @Test
+    @Test(description = "Verify that new tabs open correctly after clicking on links")
+    @Feature("Tabs Handling")
+    @Story("The user navigates to new tabs via links")
+    @Severity(SeverityLevel.CRITICAL)
     public void shouldOpenNewTabs() {
         getDriver().get(FramesAndWindowsPage.FRAMES_AND_WINDOWS_URL);
         FramesAndWindowsPage framesAndWindowsPage = new FramesAndWindowsPage(getDriver(), getActions());
-        NewTabPage newTabPage = framesAndWindowsPage.clickOpenNewTab();
-        Object[] windowHandles1 = getDriver().getWindowHandles().toArray();
+        NewTabPage newTabPage = framesAndWindowsPage.clickOpenNewTabAndSwitch();
         SoftAssert soft = new SoftAssert();
 
         soft.assertEquals(
-                windowHandles1.length,
+                newTabPage.getWindowCount(),
                 2,
-                "Expected 2 tabs to be open after the first click");
-        getDriver().switchTo().window((String) windowHandles1[1]);
-
+                "Expected 2 tabs to be open after the first click"
+        );
         soft.assertEquals(
                 getDriver().getCurrentUrl(),
                 NewTabPage.NEW_TAB_URL,
                 "First new tab didn't open correctly"
         );
-        newTabPage.clickOpenNewTab();
-        Object[] windowHandles2 = getDriver().getWindowHandles().toArray();
+        newTabPage.clickOpenNewTabAndSwitch();
 
         soft.assertEquals(
-                windowHandles2.length,
+                newTabPage.getWindowCount(),
                 3,
                 "Expected 3 tabs to be open after the second click"
         );
-        getDriver().switchTo().window((String) windowHandles2[2]);
-
         soft.assertEquals(
                 getDriver().getCurrentUrl(),
                 NewTabPage.NEW_TAB_URL,
@@ -60,7 +63,10 @@ public class TestingPageTest extends BaseTest {
         soft.assertAll();
     }
 
-    @Test
+    @Test(description = "Verify that user can enter a name in alert and get a personalized greeting")
+    @Feature("Alerts")
+    @Story("User interacts with alert and enters his name")
+    @Severity(SeverityLevel.MINOR)
     public void shouldEnterUsernameInAlert() {
         getDriver().get(AlertPage.ALERT_PAGE_URL);
         AlertPage alertPage = new AlertPage(getDriver(), getActions());

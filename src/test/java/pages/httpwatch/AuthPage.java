@@ -1,6 +1,7 @@
 package pages.httpwatch;
 
 import helpers.PropertyProvider;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -20,16 +21,18 @@ public class AuthPage extends BasePage {
         super(driver, actions);
     }
 
+    @Step("Click 'Display Image' button to call browser basic auth popup")
     public void clickDisplayImageButton() {
         displayImageButton.click();
     }
 
+    @Step("Build authenticated image URL using username and password")
     public String getImageBasicAuthURL(String username, String password) {
        String imageSrc = authenticatedImage.getAttribute("src");
        return insertBasicAuthIntoHttpsUrl(imageSrc, username, password);
     }
 
-    public String insertBasicAuthIntoHttpsUrl(String url, String username, String password) {
+    private String insertBasicAuthIntoHttpsUrl(String url, String username, String password) {
         if (url == null || !url.startsWith("https://")) {
             throw new IllegalArgumentException("URL must be not null and start with https://");
         }
