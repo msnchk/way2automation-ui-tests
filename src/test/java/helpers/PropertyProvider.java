@@ -46,7 +46,13 @@ public class PropertyProvider {
 
     public static String sqlExPassword() { return getProperty("sqlex.password"); }
 
-    public static String sqlExCookieFailPath() {return  getProperty("sqlex.cookie.filepath"); };
+    public static String sqlExCookieFailPath() {return getProperty("sqlex.cookie.filepath"); }
+
+    public static String httpWatchUrl() { return getProperty("httpwatch.auth.url"); }
+
+    public static String httpWatchLogin() { return getProperty("httpwatch.login"); }
+
+    public static String httpWatchPassword() { return getProperty("httpwatch.password"); }
 }
 
 

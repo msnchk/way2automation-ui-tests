@@ -1,6 +1,7 @@
 package pages.way2autojquery;
 
 import helpers.PropertyProvider;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -23,14 +24,15 @@ public class DroppablePage extends BasePage {
         super(driver, actions);
     }
 
+    @Step("Drag the element inside frame and drop it into the droppable area")
     public void moveDraggableElementToDroppableArea() {
         switchToIframe(iframe);
         actions
                 .dragAndDrop(draggable, droppable)
                 .perform();
-        ;
     }
 
+    @Step("Get displayed text from droppable area")
     public String getTextFromDroppable() {
         return droppable.getText();
     }

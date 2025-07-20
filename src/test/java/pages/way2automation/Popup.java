@@ -22,6 +22,7 @@ public class Popup extends BasePage {
     public Popup(WebDriver driver, Actions actions) {
         super(driver, actions);
     }
+
     @Step("Wait for the popup to appear")
     public void waitForPopup() {
         actions.moveByOffset(10, 10).click().perform();

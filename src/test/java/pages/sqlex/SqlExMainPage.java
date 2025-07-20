@@ -2,6 +2,7 @@ package pages.sqlex;
 
 import helpers.CookiesHelper;
 import helpers.PropertyProvider;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -27,6 +28,7 @@ public class SqlExMainPage extends BasePage {
         super(driver, actions);
     }
 
+    @Step("Log in to SQLEx using login and password or saved cookies")
     public void sqlExAuthorize(String username, String password) {
         if (CookiesHelper.cookieFileExists()) {
             driver.manage().deleteAllCookies();
@@ -38,6 +40,7 @@ public class SqlExMainPage extends BasePage {
         }
     }
 
+    @Step("Check if confirming successful login element is displayed")
     public boolean isConfirmingLoginElementDisplayed() {
         return confirmingLoginElement.isDisplayed();
     }

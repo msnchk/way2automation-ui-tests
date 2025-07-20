@@ -2,6 +2,7 @@ package pages.way2autojquery;
 
 import helpers.PropertyProvider;
 import helpers.WaitHelper;
+import io.qameta.allure.Step;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,15 +29,18 @@ public class AlertPage extends BasePage {
         super(driver, actions);
     }
 
+    @Step("Open 'Input Alert' tab")
     public void openInputAlertTab() {
         inputAlertTab.click();
     }
 
+    @Step("Click 'Display Alert' button inside iframe")
     public void clickDisplayAlertButton() {
         switchToIframe(iframe);
         displayAlertButton.click();
     }
 
+    @Step("Enter user name into alert and accept it")
     public void enterUserNameInAlert(String name) {
         WaitHelper.waitForAlert(driver);
         Alert alert = driver.switchTo().alert();
@@ -48,6 +52,7 @@ public class AlertPage extends BasePage {
         return "Hello " + name + "! How are you today?";
     }
 
+    @Step("Get greeting message from the page")
     public String getWelcomeText() {
         return welcomeText.getText();
     }

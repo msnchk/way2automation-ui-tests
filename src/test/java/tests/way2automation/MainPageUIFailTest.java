@@ -20,7 +20,6 @@ public class MainPageUIFailTest extends BaseTest {
     }
 
     @Test(description = "TC-2-fail: Verify navigation from top menu to 'Selenium with Java' course page")
-    @Description("Упадет из-за несоответствия URL ожидаемому. Должен прикрепиться скрин страницы 'Selenium Training Online'")
     @Feature("Top Menu Navigation")
     @Story("Navigate to Selenium with Java course from top menu")
     @Severity(SeverityLevel.NORMAL)
@@ -34,7 +33,6 @@ public class MainPageUIFailTest extends BaseTest {
     }
 
     @Test(description = "TC-4-fail: Verify that 'Read more' button on 'API Testing with Java' flip box navigates to this course page")
-    @Description("Упадет, так как кнопка 'Read more' еще не видима. Ожидается скрин флипбокса.")
     @Feature("Course Cards")
     @Story("Navigate to API Testing with Java course from flip box")
     @Severity(SeverityLevel.NORMAL)
@@ -45,11 +43,9 @@ public class MainPageUIFailTest extends BaseTest {
                 getDriver().getCurrentUrl(),
                 BASE_URL + "soapui/rest-api-webservices-testing-training",
                 "Java API testing page wasn't opened");
-
     }
 
     @Test(description = "TC-6-fail: Verify navigation from top menu to 'Cypress' course page")
-    @Description("Упадет либо потому, что попап появился и не дает кликать по меню, либо потому, что попап не появился.")
     @Feature("Top Menu Navigation")
     @Story("Navigate to Cypress course from top menu")
     @Severity(SeverityLevel.NORMAL)

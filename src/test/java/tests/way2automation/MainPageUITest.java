@@ -1,7 +1,6 @@
 package tests.way2automation;
 
 import helpers.PropertyProvider;
-import helpers.WaitHelper;
 import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -53,9 +52,6 @@ public class MainPageUITest extends BaseTest {
     @Severity(SeverityLevel.MINOR)
     public void shouldNavigateToYouTubeFromHeader() {
         mainPage.getHeader().navigateToYouTubeFromHeaderIcon();
-        WaitHelper.waitForNumberOfTabs(getDriver(), 2);
-        Object[] windowHandles = getDriver().getWindowHandles().toArray();
-        getDriver().switchTo().window((String) windowHandles[1]);
 
         Assert.assertEquals(
                 getDriver().getCurrentUrl(),

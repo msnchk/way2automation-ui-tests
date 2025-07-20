@@ -8,6 +8,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class BasePage {
     protected WebDriver driver;
     protected Actions actions;
@@ -34,6 +37,11 @@ public abstract class BasePage {
         return scrollWidth > clientWidth;
     }
 
+    @Step("Get count of opened windows/tabs")
+    public int getWindowCount() {
+        return driver.getWindowHandles().size();
+    }
+
     protected void clickWhenClickable(WebElement element) {
         WaitHelper.waitForElementToBeVisible(driver, element);
         WaitHelper.waitForElementToBeClickable(driver, element);
@@ -48,5 +56,11 @@ public abstract class BasePage {
 
     protected void switchToIframe(WebElement frame) {
         driver.switchTo().frame(frame);
+    }
+
+    protected void switchToLastTab() {
+        List<String> handles = new ArrayList<>(driver.getWindowHandles());
+        String lastHandle = handles.get(handles.size() - 1);
+        driver.switchTo().window(lastHandle);
     }
 }

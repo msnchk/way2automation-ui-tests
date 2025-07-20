@@ -1,5 +1,6 @@
 package pages.way2automation;
 
+import helpers.WaitHelper;
 import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -45,5 +46,7 @@ public class Header extends BasePage {
     @Step("Click the YouTube icon in the header")
     public void navigateToYouTubeFromHeaderIcon() {
         clickWhenClickable(youTubeIcon);
+        WaitHelper.waitForNumberOfTabs(driver, 2);
+        switchToLastTab();
     }
 }
