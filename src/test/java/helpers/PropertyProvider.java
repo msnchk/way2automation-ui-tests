@@ -30,7 +30,7 @@ public class PropertyProvider {
         return value;
     }
 
-    public static String gridUrl() { return getProperty("grid.url"); }
+    public static String selenoidURL() { return getProperty("selenoid.url"); }
 
     public static String baseUrl() { return getProperty("way2automation.base.url"); }
 

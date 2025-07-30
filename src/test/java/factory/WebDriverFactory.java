@@ -2,42 +2,32 @@ package factory;
 
 import helpers.PropertyProvider;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.*;
 
 public class WebDriverFactory {
-    public static final String GRID_URL_STRING = PropertyProvider.gridUrl();
+    private static final String SELENOID_URL_STRING = PropertyProvider.selenoidURL();
 
     public static WebDriver createDriver(String executionType, String browser) {
-        switch (executionType) {
-            case "remote":
-                return createRemoteWebdriver(browser);
-            case "local":
-                return createLocalWebdriver(browser);
-            default:
-                throw new IllegalArgumentException("Unsupported execution type: " + executionType);
+        if (!"remote".equals(executionType)) {
+            throw new IllegalArgumentException("Only remote");
         }
+        return createRemoteWebDriver(browser);
     }
 
-    private static WebDriver createRemoteWebdriver(String browser) {
+    private static WebDriver createRemoteWebDriver(String browser) {
         try {
-            URL gridUrl = new URL(GRID_URL_STRING);
-
-            switch (browser) {
+            URL selenoidURL = new URL(SELENOID_URL_STRING);
+            switch (browser.toLowerCase()) {
                 case "chrome":
-                    return new RemoteWebDriver(gridUrl, createChromeOptions());
+                    return new RemoteWebDriver(selenoidURL, createChromeOptions());
                 case "firefox":
-                    return new RemoteWebDriver(gridUrl, createFirefoxOptions());
-                case "edge":
-                    return new RemoteWebDriver(gridUrl, createEdgeOptions());
+                    return new RemoteWebDriver(selenoidURL, createFirefoxOptions());
                 default:
                     throw new IllegalArgumentException("Unsupported browser: " + browser);
             }
@@ -46,37 +36,36 @@ public class WebDriverFactory {
         }
     }
 
-    private static WebDriver createLocalWebdriver(String browser) {
-        switch (browser) {
-            case "chrome":
-                return new ChromeDriver(createChromeOptions());
-            case "firefox":
-                return new FirefoxDriver(createFirefoxOptions());
-            case "edge":
-                return new EdgeDriver(createEdgeOptions());
-            default:
-                throw new IllegalArgumentException("Unsupported browser: " + browser);
-        }
-    }
-
     private static ChromeOptions createChromeOptions() {
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments(
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments(
                 "--window-size=1920,1080",
-                "--disable-blink-features=AutomationControlled"
+                "--disable-blink-features=AutomationControlled",
+                "--no-sandbox",
+                "--disable-dev-shm-usage"
         );
-        return chromeOptions;
+        options.setCapability("browserVersion", "128.0");
+        options.setCapability("selenoid:options", getSelenoidOptions("Chrome test"));
+        return options;
     }
 
     private static FirefoxOptions createFirefoxOptions() {
-        FirefoxOptions firefoxOptions = new FirefoxOptions();
-        firefoxOptions.addArguments("--width=1920", "--height=1080");
-        return firefoxOptions;
+        FirefoxOptions options = new FirefoxOptions();
+        options.addArguments("--width=1920", "--height=1080");
+        options.setCapability("browserVersion", "125.0");
+        options.setCapability("selenoid:options", getSelenoidOptions("Firefox test"));
+        return options;
     }
 
-    private static EdgeOptions createEdgeOptions() {
-        EdgeOptions edgeOptions = new EdgeOptions();
-        edgeOptions.addArguments("–-window-size=1920,1080");
-        return edgeOptions;
+    private static Map<String, Object> getSelenoidOptions(String testName) {
+        Map<String, Object> selenoidOptions = new HashMap<>();
+        selenoidOptions.put("name", testName);
+        selenoidOptions.put("sessionTimeout", "15m");
+        selenoidOptions.put("env", Collections.singletonList("TZ=UTC"));
+        Map<String, Object> labels = new HashMap<>();
+        labels.put("manual", "true");
+        selenoidOptions.put("labels", labels);
+//        selenoidOptions.put("enableVideo", true);
+        return selenoidOptions;
     }
 }

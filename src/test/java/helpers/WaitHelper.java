@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class WaitHelper {
-    private static final int TIMEOUT_SECONDS = 20;
+    private static final int TIMEOUT_SECONDS = 45;
 
     private static WebDriverWait getWait(WebDriver driver) {
         return new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT_SECONDS));

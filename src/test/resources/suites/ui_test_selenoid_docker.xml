@@ -1,0 +1,28 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="MainPageUITest_Parallel_With_Choice_Of_Execution_type">
+    <parameter name="executionType" value="remote"/>
+
+    <test name="ChromeTests">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="tests.way2autojquery.TestingPageTest">
+                <methods>
+                    <include name="shouldEnterUsernameInAlert"/>
+                    <include name="shouldOpenNewTabs"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="FirefoxTests">
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="tests.way2autojquery.TestingPageTest">
+                <methods>
+                    <include name="shouldOpenNewTabs"/>
+                    <include name="shouldEnterUsernameInAlert"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
