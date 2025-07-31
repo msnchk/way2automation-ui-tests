@@ -9,4 +9,3 @@ COPY src ./src
 
 CMD mvn test -DsuiteXmlFile=src/test/resources/suites/ui_test_selenoid_docker.xml && \
     mvn allure:report -Dallure.report.directory=/app/allure-report
-
