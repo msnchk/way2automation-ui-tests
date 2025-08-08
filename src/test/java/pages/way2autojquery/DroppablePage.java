@@ -1,6 +1,6 @@
 package pages.way2autojquery;
 
-import helpers.PropertyProvider;
+import helpers.EnvKeys;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,7 +9,8 @@ import org.openqa.selenium.support.FindBy;
 import pages.BasePage;
 
 public class DroppablePage extends BasePage {
-    public static final String DROPPABLE_URL = PropertyProvider.jqueryBaseUrl() + ("droppable.php");
+    public static final String DROPPABLE_URL =
+            EnvKeys.WAY2_BASE_URL.get() + EnvKeys.JQUERY_DROPPABLE_PATH.get();
 
     @FindBy(className = "demo-frame")
     private WebElement iframe;

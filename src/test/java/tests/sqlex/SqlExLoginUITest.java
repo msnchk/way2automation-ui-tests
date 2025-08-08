@@ -1,6 +1,5 @@
 package tests.sqlex;
 
-import helpers.PropertyProvider;
 import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -23,7 +22,7 @@ public class SqlExLoginUITest extends BaseTest {
     @Story("User is authorized using cookies if available, or logs in with username and password")
     @Severity(SeverityLevel.CRITICAL)
     public void shouldLoginSuccessfully() {
-        sqlExMainPage.sqlExAuthorize(PropertyProvider.sqlExLogin(), PropertyProvider.sqlExPassword());
+        sqlExMainPage.sqlExAuthorize();
 
         Assert.assertTrue(
                 sqlExMainPage.isConfirmingLoginElementDisplayed(),

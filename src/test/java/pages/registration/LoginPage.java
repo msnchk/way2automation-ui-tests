@@ -1,5 +1,6 @@
 package pages.registration;
 
+import helpers.EnvKeys;
 import helpers.WaitHelper;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -12,7 +13,8 @@ import pages.BasePage;
 import java.util.List;
 
 public class LoginPage extends BasePage {
-    public static final String LOGIN_FORM_URL = LoginConfirmPage.LOGIN_CONFIRM_URL + "login";
+    public static final String LOGIN_FORM_URL =
+            EnvKeys.WAY2_BASE_URL.get() + EnvKeys.LOGIN_FORM_PATH.get();
 
     @FindBy(id = "username")
     private WebElement usernameInput;

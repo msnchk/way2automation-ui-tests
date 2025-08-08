@@ -1,6 +1,6 @@
 package factory;
 
-import helpers.PropertyProvider;
+import helpers.EnvKeys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -14,7 +14,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class WebDriverFactory {
-    public static final String GRID_URL_STRING = PropertyProvider.gridUrl();
+    public static final String GRID_URL_STRING = EnvKeys.GRID_URL.get();
 
     public static WebDriver createDriver(String executionType, String browser) {
         switch (executionType) {

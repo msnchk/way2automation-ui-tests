@@ -1,6 +1,5 @@
 package tests.way2automation;
 
-import helpers.PropertyProvider;
 import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -10,7 +9,6 @@ import tests.BaseTest;
 
 @Epic("Way2Automation Main Page UI")
 public class MainPageUITest extends BaseTest {
-    public static final String BASE_URL = PropertyProvider.baseUrl();
     private MainPage mainPage;
 
     @BeforeMethod
@@ -29,7 +27,7 @@ public class MainPageUITest extends BaseTest {
 
         Assert.assertEquals(
                 getDriver().getCurrentUrl(),
-                BASE_URL + "lifetime-membership-club/",
+                MainPage.MAIN_PAGE_URL + "lifetime-membership-club/",
                 "Membership club page wasn't opened");
     }
 
@@ -42,7 +40,7 @@ public class MainPageUITest extends BaseTest {
 
         Assert.assertEquals(
                 getDriver().getCurrentUrl(),
-                BASE_URL + "selenium-training/online-training-webinars/",
+                MainPage.MAIN_PAGE_URL + "selenium-training/online-training-webinars/",
                 "Selenium training page wasn't opened");
     }
 
@@ -68,7 +66,7 @@ public class MainPageUITest extends BaseTest {
 
         Assert.assertEquals(
                 getDriver().getCurrentUrl(),
-                BASE_URL + "soapui/rest-api-webservices-testing-training",
+                MainPage.MAIN_PAGE_URL + "soapui/rest-api-webservices-testing-training",
                 "Java API testing page wasn't opened");
 
     }
@@ -110,7 +108,7 @@ public class MainPageUITest extends BaseTest {
 
         Assert.assertEquals(
                 getDriver().getCurrentUrl(),
-                BASE_URL + "lifetime-membership-club/",
+                MainPage.MAIN_PAGE_URL + "lifetime-membership-club/",
                 "Membership club page wasn't opened");
     }
 }

@@ -1,6 +1,5 @@
 package tests.httpwatch;
 
-import helpers.PropertyProvider;
 import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -19,8 +18,7 @@ public class BasicAuthTest extends BaseTest {
         getDriver().get(AuthPage.HTTPWATCH_AUTH_URL);
         AuthPage authPage = new AuthPage(getDriver(), getActions());
         authPage.clickDisplayImageButton();
-        String imageBasicAuthUrl = authPage
-                .getImageBasicAuthURL(PropertyProvider.httpWatchLogin(), PropertyProvider.httpWatchPassword());
+        String imageBasicAuthUrl = authPage.getImageBasicAuthURL();
         getDriver().get(imageBasicAuthUrl);
         ImagePage imagePage = new ImagePage(getDriver(), getActions());
 
