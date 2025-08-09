@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,5 +63,19 @@ public abstract class BasePage {
         List<String> handles = new ArrayList<>(driver.getWindowHandles());
         String lastHandle = handles.get(handles.size() - 1);
         driver.switchTo().window(lastHandle);
+    }
+
+    protected void selectCheckboxAnswersByValue(List<WebElement> checkboxes, List<String> desiredValues) {
+        for(WebElement checkbox: checkboxes) {
+            String value = checkbox.getAttribute("value");
+            if (desiredValues.contains(value)) {
+                checkbox.click();
+            }
+        }
+    }
+
+    protected void selectDropdownByValue(WebElement selectorElement, String value) {
+        Select select = new Select(selectorElement);
+        select.selectByValue(value);
     }
 }

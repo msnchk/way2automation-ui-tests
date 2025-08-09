@@ -10,3 +10,7 @@
 ### Maven ###
 target/
 .mvn
+
+### Allure ###
+allure-report
+allure-results

@@ -10,6 +10,8 @@ public enum EnvKeys {
     JQUERY_NEW_TAB_PATH("jquery.frames-and-windows.new-tab.path"),
     LOGIN_CONFIRM_PATH("angularjs-protractor.registration.confirm.path"),
     LOGIN_FORM_PATH("angularjs-protractor.registration.login.path"),
+    BANKING_MAIN_PAGE_PATH("angularjs-protractor.banking.path"),
+    BANKING_SAMPLE_FORM_PATH("angularjs-protractor.sample-form.path"),
 
     SQLEX_MAIN_PAGE_URL("sqlex.base.url"),
     SQLEX_LOGIN("sqlex.login"),
