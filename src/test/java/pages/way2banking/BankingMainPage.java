@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import pages.BasePage;
+import pages.way2banking.bankManager.BankManagerMenu;
+import pages.way2banking.customer.CustomerLoginPage;
 
 public class BankingMainPage extends BasePage {
     public static final String BANKING_MAIN_PAGE_URL =
@@ -14,11 +16,11 @@ public class BankingMainPage extends BasePage {
     @FindBy(xpath = "//a[contains(@class, 'btn') and normalize-space(text())='Sample Form']")
     private WebElement sampleFormLink;
 
-    @FindBy(xpath = "//a[contains(@class, 'btn') and normalize-space(text())='Customer Login']")
-    private WebElement customerLoginLink;
+    @FindBy(xpath = "//button[contains(@class, 'btn') and normalize-space(text())='Customer Login']")
+    private WebElement customerLoginButton;
 
-    @FindBy(xpath = "//a[contains(@class, 'btn') and normalize-space(text())='Bank Manager']")
-    private WebElement bankManagerLink;
+    @FindBy(xpath = "//button[contains(@class, 'btn') and normalize-space(text())='Bank Manager Login']")
+    private WebElement bankManagerButton;
 
     public BankingMainPage(WebDriver driver, Actions actions) {
         super(driver, actions);
@@ -30,12 +32,12 @@ public class BankingMainPage extends BasePage {
     }
 
     public CustomerLoginPage openCustomerLoginPage() {
-        clickWhenClickable(customerLoginLink);
+        clickWhenClickable(customerLoginButton);
         return new CustomerLoginPage(driver, actions);
     }
 
-    public BankManagerPage openBankManagerPage() {
-        clickWhenClickable(bankManagerLink);
-        return new BankManagerPage(driver, actions);
+    public BankManagerMenu openBankManagerMenu() {
+        clickWhenClickable(bankManagerButton);
+        return new BankManagerMenu(driver, actions);
     }
 }

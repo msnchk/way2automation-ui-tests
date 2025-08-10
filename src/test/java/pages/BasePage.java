@@ -2,6 +2,7 @@ package pages;
 
 import helpers.WaitHelper;
 import io.qameta.allure.Step;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -77,5 +78,32 @@ public abstract class BasePage {
     protected void selectDropdownByValue(WebElement selectorElement, String value) {
         Select select = new Select(selectorElement);
         select.selectByValue(value);
+    }
+
+    protected void selectDropdownByText(WebElement selectorElement, String text) {
+        Select select = new Select(selectorElement);
+        select.selectByVisibleText(text);
+    }
+
+    public boolean isAlertPresent() {
+        try {
+            driver.switchTo().alert();
+            return true;
+        } catch (org.openqa.selenium.NoAlertPresentException e) {
+            return false;
+        }
+    }
+
+    public String getAlertTextIfExistsAndAccept() {
+        try {
+            Alert alert = driver.switchTo().alert();
+            return alert.getText();
+        } catch (org.openqa.selenium.NoAlertPresentException e) {
+            return "";
+        }
+    }
+
+    public void acceptAlert() {
+        driver.switchTo().alert().accept();
     }
 }

@@ -1,11 +1,11 @@
-package pages.way2banking;
+package pages.way2banking.bankManager;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import pages.BasePage;
 
-public class CustomerLoginPage extends BasePage {
-    public CustomerLoginPage(WebDriver driver, Actions actions) {
+public class CustomersPage extends BasePage {
+    public CustomersPage(WebDriver driver, Actions actions) {
         super(driver, actions);
     }
 }
