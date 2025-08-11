@@ -14,13 +14,13 @@ public class BankManagerMenu extends BasePage {
 
     private final Header header;
 
-    @FindBy(xpath = "//button[contains(@class, 'btn') and normalize-space(text())='Add Customer']")
+    @FindBy(css = "button[ng-click='addCust()']")
     private WebElement addCustomerButton;
 
-    @FindBy(xpath = "//button[contains(@class, 'btn') and normalize-space(text())='Open Account']")
+    @FindBy(css = "button[ng-click='openAccount()']")
     private WebElement openAccountButton;
 
-    @FindBy(xpath = "//button[contains(@class, 'btn') and normalize-space(text())='Customers']")
+    @FindBy(css = "button[ng-click='showCust()']")
     private WebElement customersButton;
 
     public BankManagerMenu(WebDriver driver, Actions actions) {
@@ -33,7 +33,7 @@ public class BankManagerMenu extends BasePage {
         return new AddCustomerPage(driver, actions);
     }
 
-    public OpenAccountPage openOpenAccountPage() {
+    public OpenAccountPage openAccountPage() {
         clickWhenClickable(openAccountButton);
         return new OpenAccountPage(driver, actions);
     }

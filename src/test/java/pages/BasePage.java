@@ -47,8 +47,9 @@ public abstract class BasePage {
     protected void clickWhenClickable(WebElement element) {
         WaitHelper.waitForElementToBeVisible(driver, element);
         WaitHelper.waitForElementToBeClickable(driver, element);
-        actions.scrollToElement(element);
-        element.click();
+//        actions.scrollToElement(element);
+        actions.pause(300).moveToElement(element).click().perform();
+//        element.click();
     }
 
     protected void unfocusElement(WebElement element) {

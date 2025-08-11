@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import pages.BasePage;
 import pages.way2banking.bankManager.BankManagerMenu;
 import pages.way2banking.customer.CustomerLoginPage;
+import pages.way2banking.sampleform.SampleFormPage;
 
 public class BankingMainPage extends BasePage {
     public static final String BANKING_MAIN_PAGE_URL =

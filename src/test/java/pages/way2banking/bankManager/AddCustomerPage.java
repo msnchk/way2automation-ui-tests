@@ -1,6 +1,5 @@
 package pages.way2banking.bankManager;
 
-import data.way2banking.CustomerData;
 import helpers.EnvKeys;
 import helpers.WaitHelper;
 import org.openqa.selenium.WebDriver;
@@ -32,11 +31,11 @@ public class AddCustomerPage extends BasePage {
         this.bankManagerMenu = new BankManagerMenu(driver, actions);
     }
 
-    public void fillFormWithCustomerData(CustomerData customerData) {
+    public void fillFormWithCustomerData(String firstName, String lastName, String postCode) {
         WaitHelper.waitForElementToBeVisible(driver, firstNameInput);
-        firstNameInput.sendKeys(customerData.getFirstName());
-        lastNameInput.sendKeys(customerData.getLastName());
-        postCodeInput.sendKeys(customerData.getPostCode());
+        firstNameInput.sendKeys(firstName);
+        lastNameInput.sendKeys(lastName);
+        postCodeInput.sendKeys(postCode);
         addButton.click();
     }
 

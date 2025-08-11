@@ -1,4 +1,4 @@
-package data.way2banking;
+package data.way2banking.sampleform;
 
 import org.testng.annotations.DataProvider;
 

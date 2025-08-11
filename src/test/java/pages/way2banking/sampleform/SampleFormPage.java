@@ -1,6 +1,6 @@
-package pages.way2banking;
+package pages.way2banking.sampleform;
 
-import data.way2banking.SampleFormData;
+import data.way2banking.sampleform.SampleFormData;
 import helpers.EnvKeys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

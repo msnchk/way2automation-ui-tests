@@ -11,13 +11,13 @@ import pages.way2banking.Header;
 public class CustomerAccountMenu extends BasePage {
     private final Header header;
 
-    @FindBy(xpath = "//button[normalize-space(text())='Transactions']")
+    @FindBy(css = "button[ng-click='transactions()']")
     private WebElement transactionsButton;
 
-    @FindBy(xpath = "//button[normalize-space(text())='Deposit']")
+    @FindBy(css = "button[ng-click='deposit()']")
     private WebElement depositButton;
 
-    @FindBy(xpath = "//button[normalize-space(text())='Withdrawl']")
+    @FindBy(css = "button[ng-click='withdrawl()']")
     private WebElement withDrawlButton;
 
     @FindBy(xpath = "//div[strong/span[@class='fontBig ng-binding']]")
@@ -38,8 +38,17 @@ public class CustomerAccountMenu extends BasePage {
         return new DepositPage(driver, actions);
     }
 
+    public WithdrawPage openWithdrawPage() {
+        clickWhenClickable(withDrawlButton);
+        return new WithdrawPage(driver, actions);
+    }
+
     public String getWelcomeText() {
         WaitHelper.waitForElementToBeVisible(driver, welcomeDiv);
         return welcomeDiv.getText();
+    }
+
+    public Header getHeader() {
+        return header;
     }
 }

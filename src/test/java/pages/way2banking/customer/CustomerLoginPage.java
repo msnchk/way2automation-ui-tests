@@ -1,6 +1,5 @@
 package pages.way2banking.customer;
 
-import data.way2banking.CustomerData;
 import helpers.WaitHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,19 +22,10 @@ public class CustomerLoginPage extends BasePage {
         this.header = new Header(driver, actions);
     }
 
-    public WelcomePage selectCustomerNameWithNoAccountsAndLogin(CustomerData customer) {
-        login(customer);
-        return new WelcomePage(driver, actions);
-    }
-
-    public CustomerAccountMenu selectCustomerNameAndLogin(CustomerData customer) {
-        login(customer);
-        return new CustomerAccountMenu(driver, actions);
-    }
-
-    private void login(CustomerData customer) {
+    public CustomerAccountMenu selectCustomerNameAndLogin(String firstName, String lastName) {
         WaitHelper.waitForElementToBeVisible(driver, userSelect);
-        selectDropdownByText(userSelect, customer.getFirstName() + " " + customer.getLastName());
-        loginButton.click();
+        selectDropdownByText(userSelect, firstName + " " + lastName);
+        clickWhenClickable(loginButton);
+        return new CustomerAccountMenu(driver, actions);
     }
 }

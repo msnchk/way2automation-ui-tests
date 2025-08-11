@@ -1,6 +1,5 @@
 package pages.way2banking.bankManager;
 
-import data.way2banking.CustomerData;
 import helpers.WaitHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -25,10 +24,10 @@ public class OpenAccountPage extends BasePage {
         this.bankManagerMenu = new BankManagerMenu(driver, actions);
     }
 
-    public void openAccountForCustomer(CustomerData customer, String currency) {
+    public void openAccountForCustomer(String firstName, String lastName, String currency) {
         WaitHelper.waitForElementToBeVisible(driver, userSelect);
-        selectDropdownByText(userSelect, customer.getFirstName() + " " + customer.getLastName());
-        selectDropdownByText(currencySelect,currency);
+        selectDropdownByText(userSelect, firstName + " " + lastName);
+        selectDropdownByText(currencySelect, currency);
         processButton.click();
     }
 

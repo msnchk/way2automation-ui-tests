@@ -1,30 +1,28 @@
 package tests.way2banking;
 
-import data.way2banking.CustomerData;
-import data.way2banking.CustomerDataProvider;
-import data.way2banking.SampleFormData;
-import data.way2banking.SampleFormDataProvider;
+import data.way2banking.customer.CustomerData;
+import data.way2banking.customer.CustomerDataProvider;
+import data.way2banking.sampleform.SampleFormData;
+import data.way2banking.sampleform.SampleFormDataProvider;
+import helpers.BankingPreconditions;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.way2banking.bankManager.AddCustomerPage;
 import pages.way2banking.bankManager.BankManagerMenu;
 import pages.way2banking.BankingMainPage;
-import pages.way2banking.SampleFormPage;
-import tests.BaseTest;
+import pages.way2banking.sampleform.SampleFormPage;
 
-public class BankingUITest extends BaseTest {
+public class BankingUITest extends BankingPreconditions {
     private BankingMainPage bankingMainPage;
 
     @BeforeMethod
-    public void openBankingMainPage() {
+    public void setUp() {
         getDriver().get(BankingMainPage.BANKING_MAIN_PAGE_URL);
         bankingMainPage = new BankingMainPage(getDriver(), getActions());
     }
 
-    @Test(
-            dataProvider = "sampleData",
-            dataProviderClass = SampleFormDataProvider.class
+    @Test(dataProvider = "sampleData", dataProviderClass = SampleFormDataProvider.class
     )
     public void shouldTestSampleFormWithValidData(SampleFormData sampleFormData) {
         SampleFormPage sampleFormPage = bankingMainPage.openSampleFormPage();
@@ -42,14 +40,12 @@ public class BankingUITest extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(
-            dataProvider = "customerData",
-            dataProviderClass = CustomerDataProvider.class
+    @Test(dataProvider = "customerData", dataProviderClass = CustomerDataProvider.class
     )
     public void shouldAddCustomerWithValidData(CustomerData customerData) {
         BankManagerMenu bankManagerMenu = bankingMainPage.openBankManagerMenu();
         AddCustomerPage addCustomerPage = bankManagerMenu.openAddCustomerPage();
-        addCustomerPage.fillFormWithCustomerData(customerData);
+        addCustomerPage.fillFormWithCustomerData(customerData.getFirstName(), customerData.getLastName(), customerData.getPostCode());
 
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(
