@@ -61,7 +61,6 @@ public class CustomerAccountMenu extends BasePage {
     @Step("Get current account balance")
     public BigDecimal getBalance() {
         WaitHelper.waitForElementToBeVisible(driver, balance);
-        WaitHelper.waitForElementToBeClickable(driver, balance);
         String text = balance.getText().trim();
         return new BigDecimal(text);
     }

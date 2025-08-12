@@ -9,7 +9,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.way2banking.bankManager.AddCustomerPage;
-import pages.way2banking.bankManager.BankManagerMenu;
 import pages.way2banking.BankingMainPage;
 import pages.way2banking.sampleform.SampleFormPage;
 
@@ -56,8 +55,9 @@ public class BankingUITest extends BankingPreconditions {
     @Story("Manager adds customer with valid data")
     @Severity(SeverityLevel.CRITICAL)
     public void shouldAddCustomerWithValidData(CustomerData customerData) {
-        BankManagerMenu bankManagerMenu = bankingMainPage.openBankManagerMenu();
-        AddCustomerPage addCustomerPage = bankManagerMenu.openAddCustomerPage();
+        AddCustomerPage addCustomerPage = bankingMainPage
+                .openBankManagerMenu()
+                .openAddCustomerPage();
         addCustomerPage.fillFormWithCustomerData(customerData.getFirstName(), customerData.getLastName(), customerData.getPostCode());
 
         SoftAssert softAssert = new SoftAssert();

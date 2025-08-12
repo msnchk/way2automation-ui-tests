@@ -7,7 +7,6 @@ import java.math.BigDecimal;
 
 public class WithdrawDataProvider {
     private static final String DEFAULT_SUCCESS_MESSAGE = "Transaction successful";
-    private static final String DEFAULT_FAIL_MESSAGE = "Transaction Failed. You can not withdraw amount more than the balance.";
     private static final String DEFAULT_TRANSACTION_TYPE = "Debit";
 
     @DataProvider(name = "withdrawData")
@@ -24,7 +23,7 @@ public class WithdrawDataProvider {
                         new WithdrawData(
                                 BigDecimal.valueOf(1000000),
                                 false,
-                                DEFAULT_FAIL_MESSAGE,
+                                "Transaction Failed. You can not withdraw amount more than the balance.",
                                 "")
                 }
         };
