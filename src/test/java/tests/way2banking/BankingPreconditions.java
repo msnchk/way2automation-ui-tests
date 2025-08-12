@@ -1,15 +1,20 @@
-package helpers;
+package tests.way2banking;
 
 import data.way2banking.customer.CustomerData;
+import data.way2banking.customer.DepositData;
+import data.way2banking.customer.WithdrawData;
 import pages.way2banking.BankingMainPage;
 import pages.way2banking.bankManager.AddCustomerPage;
+import pages.way2banking.bankManager.BankManagerMenu;
 import pages.way2banking.bankManager.OpenAccountPage;
+import pages.way2banking.customer.CustomerAccountMenu;
 import pages.way2banking.customer.DepositPage;
+import pages.way2banking.customer.WithdrawPage;
 import tests.BaseTest;
 
 public class BankingPreconditions extends BaseTest {
 
-    public BankingMainPage createCustomer(CustomerData customer) {
+    public BankManagerMenu createCustomer(CustomerData customer) {
         getDriver().get(AddCustomerPage.ADD_CUSTOMER_URL);
         AddCustomerPage addCustomerPage = new AddCustomerPage(getDriver(), getActions());
         addCustomerPage.fillFormWithCustomerData(
@@ -18,26 +23,35 @@ public class BankingPreconditions extends BaseTest {
                 customer.getPostCode()
         );
         addCustomerPage.acceptAlert();
-        return addCustomerPage.getBankManagerMenu().getHeader().goHome();
+        return addCustomerPage.getBankManagerMenu();
     }
 
-    public BankingMainPage createCustomerWithAccount(CustomerData customer) {
-        BankingMainPage mainPage = createCustomer(customer);
-        OpenAccountPage openAccountPage = mainPage
-                .openBankManagerMenu()
-                .openAccountPage();
+    public BankManagerMenu createCustomerWithAccount(CustomerData customer) {
+        OpenAccountPage openAccountPage = createCustomer(customer).openAccountPage();
         openAccountPage.openAccountForCustomer(customer.getFirstName(), customer.getLastName(), "Dollar");
         openAccountPage.acceptAlert();
-        return openAccountPage.getBankManagerMenu().getHeader().goHome();
+        return openAccountPage.getBankManagerMenu();
     }
 
-    public BankingMainPage createCustomerAccountWithDeposit(CustomerData customer) {
-        BankingMainPage mainPage = createCustomerWithAccount(customer);
-        DepositPage depositPage = mainPage
+    public CustomerAccountMenu createCustomerAccountWithDeposit(CustomerData customer) {
+        BankingMainPage bankingMainPage = createCustomerWithAccount(customer)
+                .getHeader()
+                .goHome();
+        DepositPage depositPage = bankingMainPage
                 .openCustomerLoginPage()
                 .selectCustomerNameAndLogin(customer.getFirstName(), customer.getLastName())
                 .openDepositPage();
-        customer.getDeposits().forEach(deposit -> depositPage.depositAmount(deposit.getAmount()));
-        return depositPage.getCustomerAccountMenu().getHeader().goHome();
+        for (DepositData deposit : customer.getDeposits()) {
+            depositPage.depositAmount(deposit.getAmount());
+        }
+        return depositPage.getCustomerAccountMenu();
+    }
+
+    public CustomerAccountMenu createCustomerAccountWithDepositAndWithdraw(CustomerData customer) {
+        WithdrawPage withdrawPage = createCustomerAccountWithDeposit(customer).openWithdrawPage();
+        for (WithdrawData withdraw : customer.getWithdrawals()) {
+            withdrawPage.withdrawAmount(withdraw.getAmount());
+        }
+        return withdrawPage.getCustomerAccountMenu();
     }
 }

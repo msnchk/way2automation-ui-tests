@@ -1,6 +1,7 @@
 package pages.way2banking;
 
 import helpers.EnvKeys;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -27,18 +28,21 @@ public class BankingMainPage extends BasePage {
         super(driver, actions);
     }
 
+    @Step("Open Sample Form page")
     public SampleFormPage openSampleFormPage() {
-        clickWhenClickable(sampleFormLink);
+        clickAfterPause(sampleFormLink);
         return new SampleFormPage(driver, actions);
     }
 
+    @Step("Open Customer Login page")
     public CustomerLoginPage openCustomerLoginPage() {
-        clickWhenClickable(customerLoginButton);
+        clickAfterPause(customerLoginButton);
         return new CustomerLoginPage(driver, actions);
     }
 
+    @Step("Open Bank Manager menu")
     public BankManagerMenu openBankManagerMenu() {
-        clickWhenClickable(bankManagerButton);
+        clickAfterPause(bankManagerButton);
         return new BankManagerMenu(driver, actions);
     }
 }

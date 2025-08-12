@@ -1,6 +1,7 @@
 package pages.way2banking.bankManager;
 
 import helpers.WaitHelper;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -24,6 +25,7 @@ public class OpenAccountPage extends BasePage {
         this.bankManagerMenu = new BankManagerMenu(driver, actions);
     }
 
+    @Step("Open account for customer: {firstName} {lastName} with currency: {currency}")
     public void openAccountForCustomer(String firstName, String lastName, String currency) {
         WaitHelper.waitForElementToBeVisible(driver, userSelect);
         selectDropdownByText(userSelect, firstName + " " + lastName);
@@ -31,6 +33,7 @@ public class OpenAccountPage extends BasePage {
         processButton.click();
     }
 
+    @Step("Turn to Bank Manager Menu")
     public BankManagerMenu getBankManagerMenu() {
         return bankManagerMenu;
     }

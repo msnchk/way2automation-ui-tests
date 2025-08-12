@@ -44,12 +44,41 @@ public abstract class BasePage {
         return driver.getWindowHandles().size();
     }
 
+    @Step("Check if alert present")
+    public boolean isAlertPresent() {
+        try {
+            driver.switchTo().alert();
+            return true;
+        } catch (org.openqa.selenium.NoAlertPresentException e) {
+            return false;
+        }
+    }
+
+    @Step("Get alert text if exists")
+    public String getAlertTextIfExists() {
+        try {
+            Alert alert = driver.switchTo().alert();
+            return alert.getText();
+        } catch (org.openqa.selenium.NoAlertPresentException e) {
+            return "";
+        }
+    }
+
+    @Step("Accept alert")
+    public void acceptAlert() {
+        driver.switchTo().alert().accept();
+    }
+
     protected void clickWhenClickable(WebElement element) {
         WaitHelper.waitForElementToBeVisible(driver, element);
         WaitHelper.waitForElementToBeClickable(driver, element);
-//        actions.scrollToElement(element);
+        actions.scrollToElement(element).click().perform();
+    }
+
+    protected void clickAfterPause(WebElement element) {
+        WaitHelper.waitForElementToBeVisible(driver, element);
+        WaitHelper.waitForElementToBeClickable(driver, element);
         actions.pause(300).moveToElement(element).click().perform();
-//        element.click();
     }
 
     protected void unfocusElement(WebElement element) {
@@ -84,27 +113,5 @@ public abstract class BasePage {
     protected void selectDropdownByText(WebElement selectorElement, String text) {
         Select select = new Select(selectorElement);
         select.selectByVisibleText(text);
-    }
-
-    public boolean isAlertPresent() {
-        try {
-            driver.switchTo().alert();
-            return true;
-        } catch (org.openqa.selenium.NoAlertPresentException e) {
-            return false;
-        }
-    }
-
-    public String getAlertTextIfExistsAndAccept() {
-        try {
-            Alert alert = driver.switchTo().alert();
-            return alert.getText();
-        } catch (org.openqa.selenium.NoAlertPresentException e) {
-            return "";
-        }
-    }
-
-    public void acceptAlert() {
-        driver.switchTo().alert().accept();
     }
 }

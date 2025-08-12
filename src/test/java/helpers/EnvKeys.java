@@ -11,8 +11,6 @@ public enum EnvKeys {
     LOGIN_CONFIRM_PATH("angularjs-protractor.registration.confirm.path"),
     LOGIN_FORM_PATH("angularjs-protractor.registration.login.path"),
     BANKING_MAIN_PAGE_PATH("angularjs-protractor.banking.path"),
-    BANKING_SAMPLE_FORM_PATH("angularjs-protractor.sample-form.path"),
-    BANK_MANAGER_PAGE_PATH("angularjs-protractor.bank-manager-page.path"),
     BANK_MANAGER_ADD_CUST_PATH("angularjs-protractor.add-cust-page.path"),
 
     SQLEX_MAIN_PAGE_URL("sqlex.base.url"),

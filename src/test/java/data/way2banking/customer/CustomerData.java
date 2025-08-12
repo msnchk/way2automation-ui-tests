@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.ToString;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -27,7 +26,7 @@ public class CustomerData {
     private List<DepositData> deposits = List.of(new DepositData(BigDecimal.valueOf(115000)), new DepositData(BigDecimal.valueOf(5000)));
 
     @Builder.Default
-    private List<WithdrawData> withdrawals = new ArrayList<>();
+    private List<WithdrawData> withdrawals = List.of(new WithdrawData(BigDecimal.valueOf(40000)), new WithdrawData(BigDecimal.valueOf(611)));
 
     public BigDecimal getBalance() {
         BigDecimal balance = BigDecimal.ZERO;

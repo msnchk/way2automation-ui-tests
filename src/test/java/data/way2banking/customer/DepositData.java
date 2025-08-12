@@ -5,9 +5,9 @@ import lombok.*;
 import java.math.BigDecimal;
 
 @Getter
-@ToString
 @RequiredArgsConstructor
 @AllArgsConstructor
+@ToString
 public class DepositData {
     @NonNull
     private BigDecimal amount;

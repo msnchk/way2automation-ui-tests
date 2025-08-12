@@ -1,15 +1,15 @@
 package data.way2banking.customer;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
 import java.math.BigDecimal;
 
 @Getter
+@RequiredArgsConstructor
 @AllArgsConstructor
 @ToString
 public class WithdrawData {
+    @NonNull
     private BigDecimal amount;
     private Boolean shouldTransactionExist;
     private String expectedMessageAfterWithdraw;

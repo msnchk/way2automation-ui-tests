@@ -1,6 +1,6 @@
 package pages.way2banking;
 
-import helpers.WaitHelper;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -18,13 +18,9 @@ public class Header extends BasePage {
         super(driver, actions);
     }
 
+    @Step("Click Home button")
     public BankingMainPage goHome() {
-        clickWhenClickable(homeButton);
+        clickAfterPause(homeButton);
         return new BankingMainPage(driver, actions);
-    }
-
-    public void waitHeaderToBeVisibleAndClickable() {
-        WaitHelper.waitForElementToBeVisible(driver, homeButton);
-        WaitHelper.waitForElementToBeClickable(driver, homeButton);
     }
 }

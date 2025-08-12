@@ -17,14 +17,14 @@ public class DepositDataProvider {
                             true,
                             DEFAULT_SUCCESS_MESSAGE,
                             DEFAULT_TRANSACTION_TYPE)
+                },
+                {
+                    new DepositData(
+                            BigDecimal.ZERO,
+                            false,
+                            "",
+                            "")
                 }
-//                {
-//                    new DepositData(
-//                            BigDecimal.ZERO,
-//                            false,
-//                            "",
-//                            "")
-//                }
         };
     }
 }

@@ -2,6 +2,7 @@ package pages.way2banking.bankManager;
 
 import helpers.EnvKeys;
 import helpers.WaitHelper;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -31,6 +32,7 @@ public class AddCustomerPage extends BasePage {
         this.bankManagerMenu = new BankManagerMenu(driver, actions);
     }
 
+    @Step("Fill the customer form with First Name: {firstName}, Last Name: {lastName}, Post Code: {postCode} and submit")
     public void fillFormWithCustomerData(String firstName, String lastName, String postCode) {
         WaitHelper.waitForElementToBeVisible(driver, firstNameInput);
         firstNameInput.sendKeys(firstName);
@@ -39,6 +41,7 @@ public class AddCustomerPage extends BasePage {
         addButton.click();
     }
 
+    @Step("Turn to Bank Manager menu")
     public BankManagerMenu getBankManagerMenu() {
         return bankManagerMenu;
     }

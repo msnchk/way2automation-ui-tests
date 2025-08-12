@@ -1,7 +1,7 @@
 package pages.way2banking.sampleform;
 
 import data.way2banking.sampleform.SampleFormData;
-import helpers.EnvKeys;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -11,7 +11,6 @@ import pages.BasePage;
 import java.util.List;
 
 public class SampleFormPage extends BasePage {
-    public static final String SAMPLE_FORM_URL = EnvKeys.WAY2_BASE_URL.get() + EnvKeys.BANKING_SAMPLE_FORM_PATH.get();
 
     @FindBy(id = "firstName")
     private WebElement firstNameInput;
@@ -44,6 +43,7 @@ public class SampleFormPage extends BasePage {
         super(driver, actions);
     }
 
+    @Step("Fill form with user data: {sampleFormData}")
     public void fillFormWithUserData(SampleFormData sampleFormData) {
         firstNameInput.sendKeys(sampleFormData.getFirstName());
         lastNameInput.sendKeys(sampleFormData.getLastName());
@@ -54,6 +54,7 @@ public class SampleFormPage extends BasePage {
         aboutYourselfTextArea.sendKeys(getLongestHobbyWord());
         registerButton.click();
     }
+
 
     private void chooseHobby(List<String> answers) {
         selectCheckboxAnswersByValue(hobbiesCheckboxes, answers);
@@ -76,6 +77,7 @@ public class SampleFormPage extends BasePage {
         return "Самое длинное слово из предложенных хобби - " + longestValue;
     }
 
+    @Step("Check if success message is displayed")
     public boolean isSuccessMessageDisplayed() {
         if (successMessage.isEmpty()) {
             return false;
@@ -83,6 +85,7 @@ public class SampleFormPage extends BasePage {
         return true;
     }
 
+    @Step("Get success message text")
     public String getSuccessMessageText() {
         if (successMessage.isEmpty()) {
             return "";

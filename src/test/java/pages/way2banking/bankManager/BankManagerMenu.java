@@ -1,6 +1,6 @@
 package pages.way2banking.bankManager;
 
-import helpers.EnvKeys;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -9,9 +9,6 @@ import pages.BasePage;
 import pages.way2banking.Header;
 
 public class BankManagerMenu extends BasePage {
-    public static final String BANK_MANAGER_PAGE_URL =
-            EnvKeys.WAY2_BASE_URL.get() + EnvKeys.BANK_MANAGER_PAGE_PATH.get();
-
     private final Header header;
 
     @FindBy(css = "button[ng-click='addCust()']")
@@ -28,21 +25,25 @@ public class BankManagerMenu extends BasePage {
         this.header = new Header(driver, actions);
     }
 
+    @Step("Open Add Customer page")
     public AddCustomerPage openAddCustomerPage() {
-        clickWhenClickable(addCustomerButton);
+        clickAfterPause(addCustomerButton);
         return new AddCustomerPage(driver, actions);
     }
 
+    @Step("Open Open Account page")
     public OpenAccountPage openAccountPage() {
-        clickWhenClickable(openAccountButton);
+        clickAfterPause(openAccountButton);
         return new OpenAccountPage(driver, actions);
     }
 
+    @Step("Open Customers page")
     public CustomersPage openCustomersPage() {
-        clickWhenClickable(customersButton);
+        clickAfterPause(customersButton);
         return new CustomersPage(driver, actions);
     }
 
+    @Step("Turn to page header")
     public Header getHeader() {
         return header;
     }
