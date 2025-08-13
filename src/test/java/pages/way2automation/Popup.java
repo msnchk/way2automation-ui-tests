@@ -32,11 +32,11 @@ public class Popup extends BasePage {
 
     @Step("Click 'Register Now!' button on the popup")
     public void clickButtonRegisterNowOnPopup() {
-        clickWhenClickable(registerNowPopupButton);
+        elementHelper.clickWhenClickable(registerNowPopupButton);
     }
 
     @Step("Click the 'Close' button on the popup")
     public void clickButtonClosePopup() {
-        clickWhenClickable(closePopupButton);
+        elementHelper.clickWhenClickable(closePopupButton);
     }
 }

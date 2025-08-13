@@ -40,8 +40,7 @@ public class TransactionsPage extends BasePage {
 
     @Step("Check if transaction with amount {desiredAmount} exists")
     public boolean isAmountExists(BigDecimal desiredAmount) {
-        WaitHelper.waitForElementToBeVisible(driver, dateTimeHeader);
-        WaitHelper.waitForElementToBeClickable(driver, dateTimeHeader);
+        WaitHelper.waitForElementToBeVisibleAndClickable(driver, dateTimeHeader);
         for(WebElement cell: amountColumn) {
             String amount = cell.getText().trim();
             if (desiredAmount.toString().equals(amount)) {
@@ -53,6 +52,7 @@ public class TransactionsPage extends BasePage {
 
     @Step("Get transaction type for amount {desiredAmount}")
     public String getTransactionTypeOfAmount(BigDecimal desiredAmount) {
+        WaitHelper.waitForElementToBeVisibleAndClickable(driver, dateTimeHeader);
         for (WebElement row : tableRows) {
             List<WebElement> cells = row.findElements(cell);
             String amount = cells.get(1).getText().trim();
@@ -65,17 +65,18 @@ public class TransactionsPage extends BasePage {
 
     @Step("Go back to Customer Account menu")
     public CustomerAccountMenu goBack() {
-        clickAfterPause(backButton);
+        elementHelper.clickAfterPause(backButton);
         return new CustomerAccountMenu(driver, actions);
     }
 
     @Step("Reset transactions list")
     public void resetTransactions() {
-        clickAfterPause(resetButton);
+        elementHelper.clickAfterPause(resetButton);
     }
 
     @Step("Check if transactions table is empty")
     public boolean isTransactionsTableEmpty() {
+        WaitHelper.waitForElementToBeVisibleAndClickable(driver, dateTimeHeader);
         return tableRows.isEmpty();
     }
 

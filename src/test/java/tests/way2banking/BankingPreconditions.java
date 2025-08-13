@@ -22,14 +22,14 @@ public class BankingPreconditions extends BaseTest {
                 customer.getLastName(),
                 customer.getPostCode()
         );
-        addCustomerPage.acceptAlert();
+        addCustomerPage.getAlertHelper().acceptAlert();
         return addCustomerPage.getBankManagerMenu();
     }
 
     public BankManagerMenu createCustomerWithAccount(CustomerData customer) {
         OpenAccountPage openAccountPage = createCustomer(customer).openAccountPage();
         openAccountPage.openAccountForCustomer(customer.getFirstName(), customer.getLastName(), "Dollar");
-        openAccountPage.acceptAlert();
+        openAccountPage.getAlertHelper().acceptAlert();
         return openAccountPage.getBankManagerMenu();
     }
 

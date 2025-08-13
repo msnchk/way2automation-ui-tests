@@ -36,19 +36,19 @@ public class CustomerAccountMenu extends BasePage {
 
     @Step("Open Transactions page")
     public TransactionsPage openTransactionsPage() {
-        clickAfterPause(transactionsButton);
+        elementHelper.clickAfterPause(transactionsButton);
         return new TransactionsPage(driver, actions);
     }
 
     @Step("Open Deposit page")
     public DepositPage openDepositPage() {
-        clickAfterPause(depositButton);
+        elementHelper.clickAfterPause(depositButton);
         return new DepositPage(driver, actions);
     }
 
     @Step("Open Withdraw page")
     public WithdrawPage openWithdrawPage() {
-        clickAfterPause(withDrawlButton);
+        elementHelper.clickAfterPause(withDrawlButton);
         return new WithdrawPage(driver, actions);
     }
 

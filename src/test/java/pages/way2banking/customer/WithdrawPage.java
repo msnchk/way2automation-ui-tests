@@ -29,13 +29,14 @@ public class WithdrawPage extends BasePage {
 
     @Step("Withdraw amount: {amount}")
     public void withdrawAmount(BigDecimal amount) {
-        WaitHelper.waitForElementToBeVisible(driver, amountInput);
+        WaitHelper.waitForElementToBeVisibleAndClickable(driver, amountInput);
         amountInput.sendKeys(amount.toString());
-        clickAfterPause(withdrawButton);
+        elementHelper.clickAfterPause(withdrawButton);
     }
 
     @Step("Get confirmation message text after withdrawal")
     public String getMessageText() {
+        WaitHelper.waitForElementToBeVisible(driver, message);
         return message.getText();
     }
 

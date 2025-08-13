@@ -27,9 +27,9 @@ public class OpenAccountPage extends BasePage {
 
     @Step("Open account for customer: {firstName} {lastName} with currency: {currency}")
     public void openAccountForCustomer(String firstName, String lastName, String currency) {
-        WaitHelper.waitForElementToBeVisible(driver, userSelect);
-        selectDropdownByText(userSelect, firstName + " " + lastName);
-        selectDropdownByText(currencySelect, currency);
+        WaitHelper.waitForElementToBeVisibleAndClickable(driver, userSelect);
+        elementHelper.selectDropdownByText(userSelect, firstName + " " + lastName);
+        elementHelper.selectDropdownByText(currencySelect, currency);
         processButton.click();
     }
 

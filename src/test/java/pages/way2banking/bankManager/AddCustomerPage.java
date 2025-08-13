@@ -34,7 +34,7 @@ public class AddCustomerPage extends BasePage {
 
     @Step("Fill the customer form with First Name: {firstName}, Last Name: {lastName}, Post Code: {postCode} and submit")
     public void fillFormWithCustomerData(String firstName, String lastName, String postCode) {
-        WaitHelper.waitForElementToBeVisible(driver, firstNameInput);
+        WaitHelper.waitForElementToBeVisibleAndClickable(driver, firstNameInput);
         firstNameInput.sendKeys(firstName);
         lastNameInput.sendKeys(lastName);
         postCodeInput.sendKeys(postCode);

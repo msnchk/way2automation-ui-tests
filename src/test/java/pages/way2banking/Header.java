@@ -20,7 +20,7 @@ public class Header extends BasePage {
 
     @Step("Click Home button")
     public BankingMainPage goHome() {
-        clickAfterPause(homeButton);
+        elementHelper.clickAfterPause(homeButton);
         return new BankingMainPage(driver, actions);
     }
 }

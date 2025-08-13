@@ -30,19 +30,19 @@ public class BankingMainPage extends BasePage {
 
     @Step("Open Sample Form page")
     public SampleFormPage openSampleFormPage() {
-        clickAfterPause(sampleFormLink);
+        elementHelper.clickAfterPause(sampleFormLink);
         return new SampleFormPage(driver, actions);
     }
 
     @Step("Open Customer Login page")
     public CustomerLoginPage openCustomerLoginPage() {
-        clickAfterPause(customerLoginButton);
+        elementHelper.clickAfterPause(customerLoginButton);
         return new CustomerLoginPage(driver, actions);
     }
 
     @Step("Open Bank Manager menu")
     public BankManagerMenu openBankManagerMenu() {
-        clickAfterPause(bankManagerButton);
+        elementHelper.clickAfterPause(bankManagerButton);
         return new BankManagerMenu(driver, actions);
     }
 }

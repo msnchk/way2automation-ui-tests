@@ -39,7 +39,7 @@ public class LoginPage extends BasePage {
 
     @Step("Fill login form with username, password and description:")
     public void inputLoginData(String username, String password, String usernameDescription) {
-        WaitHelper.waitForElementToBeClickable(driver, usernameInput);
+        WaitHelper.waitForElementToBeVisibleAndClickable(driver, usernameInput);
         usernameInput.sendKeys(username);
         passwordInput.sendKeys(password);
         usernameDescriptionInput.sendKeys(usernameDescription);
@@ -65,9 +65,9 @@ public class LoginPage extends BasePage {
 
     @Step("Click on the 'Username' field and then unfocus")
     public void touchUsernameInputAndUnfocus() {
-        WaitHelper.waitForElementToBeClickable(driver, usernameInput);
+        WaitHelper.waitForElementToBeVisibleAndClickable(driver, usernameInput);
         usernameInput.click();
-        unfocusElement(usernameInput);
+        elementHelper.unfocusElement(usernameInput);
     }
 
     @Step("Check if validation error for 'Username' is displayed")

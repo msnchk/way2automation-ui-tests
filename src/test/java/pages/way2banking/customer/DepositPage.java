@@ -29,9 +29,9 @@ public class DepositPage extends BasePage {
 
     @Step("Deposit amount: {amount}")
     public void depositAmount(BigDecimal amount) {
-        WaitHelper.waitForElementToBeVisible(driver, amountInput);
+        WaitHelper.waitForElementToBeVisibleAndClickable(driver, amountInput);
         amountInput.sendKeys(amount.toString());
-        clickAfterPause(depositButton);
+        elementHelper.clickAfterPause(depositButton);
     }
 
     @Step("Get message text after deposit")

@@ -27,7 +27,7 @@ public class DroppablePage extends BasePage {
 
     @Step("Drag the element inside frame and drop it into the droppable area")
     public void moveDraggableElementToDroppableArea() {
-        switchToIframe(iframe);
+        elementHelper.switchToIframe(iframe);
         actions
                 .dragAndDrop(draggable, droppable)
                 .perform();

@@ -25,9 +25,9 @@ public class CustomerLoginPage extends BasePage {
 
     @Step("Select customer '{firstName} {lastName}' and perform login")
     public CustomerAccountMenu selectCustomerNameAndLogin(String firstName, String lastName) {
-        WaitHelper.waitForElementToBeVisible(driver, userSelect);
-        selectDropdownByText(userSelect, firstName + " " + lastName);
-        clickAfterPause(loginButton);
+        WaitHelper.waitForElementToBeVisibleAndClickable(driver, userSelect);
+        elementHelper.selectDropdownByText(userSelect, firstName + " " + lastName);
+        elementHelper.clickAfterPause(loginButton);
         return new CustomerAccountMenu(driver, actions);
     }
 }

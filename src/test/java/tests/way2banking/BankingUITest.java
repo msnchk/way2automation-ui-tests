@@ -62,10 +62,10 @@ public class BankingUITest extends BankingPreconditions {
 
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(
-                addCustomerPage.isAlertPresent(),
+                addCustomerPage.getAlertHelper().isAlertPresent(),
                 "Alert didn't appear");
         softAssert.assertTrue(
-                addCustomerPage.getAlertTextIfExists().contains("Customer added successfully with customer id"),
+                addCustomerPage.getAlertHelper().getAlertTextIfExists().contains("Customer added successfully with customer id"),
                 "Alert text doesn't match expected"
         );
         softAssert.assertAll();

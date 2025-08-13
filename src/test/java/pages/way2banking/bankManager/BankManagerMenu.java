@@ -27,19 +27,19 @@ public class BankManagerMenu extends BasePage {
 
     @Step("Open Add Customer page")
     public AddCustomerPage openAddCustomerPage() {
-        clickAfterPause(addCustomerButton);
+        elementHelper.clickAfterPause(addCustomerButton);
         return new AddCustomerPage(driver, actions);
     }
 
     @Step("Open Open Account page")
     public OpenAccountPage openAccountPage() {
-        clickAfterPause(openAccountButton);
+        elementHelper.clickAfterPause(openAccountButton);
         return new OpenAccountPage(driver, actions);
     }
 
     @Step("Open Customers page")
     public CustomersPage openCustomersPage() {
-        clickAfterPause(customersButton);
+        elementHelper.clickAfterPause(customersButton);
         return new CustomersPage(driver, actions);
     }
 

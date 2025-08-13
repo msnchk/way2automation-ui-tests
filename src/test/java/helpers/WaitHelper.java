@@ -22,6 +22,11 @@ public class WaitHelper {
         getWait(driver).until(ExpectedConditions.elementToBeClickable(element));
     }
 
+    public static void waitForElementToBeVisibleAndClickable(WebDriver driver, WebElement element) {
+        waitForElementToBeVisible(driver, element);
+        waitForElementToBeClickable(driver, element);
+    }
+
     public static void waitForNumberOfTabs(WebDriver driver, int numberOfTabs) {
         getWait(driver).until(ExpectedConditions.numberOfWindowsToBe(numberOfTabs));
     }

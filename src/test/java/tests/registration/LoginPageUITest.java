@@ -63,8 +63,8 @@ public class LoginPageUITest extends BaseTest {
     @Severity(SeverityLevel.MINOR)
     public void shouldCheckScrollOnPage() {
         SoftAssert soft = new SoftAssert();
-        soft.assertFalse(loginPage.hasVerticalScroll());
-        soft.assertFalse(loginPage.hasHorizontalScroll());
+        soft.assertFalse(loginPage.getPageHelper().hasVerticalScroll());
+        soft.assertFalse(loginPage.getPageHelper().hasHorizontalScroll());
         soft.assertAll();
     }
 }

@@ -38,6 +38,7 @@ public class CustomersPage extends BasePage {
 
     @Step("Delete customer with First Name: {desiredFirstName} and Last Name: {desiredLastName}")
     public void deleteCustomer(String desiredFirstName, String desiredLastName) {
+        WaitHelper.waitForElementToBeVisibleAndClickable(driver, firstNameHeader);
         WebElement row = findCustomerRow(desiredFirstName, desiredLastName);
         if (row == null) {
             throw new NoSuchElementException(
@@ -58,8 +59,7 @@ public class CustomersPage extends BasePage {
     }
 
     private WebElement findCustomerRow(String desiredFirstName, String desiredLastName) {
-        WaitHelper.waitForElementToBeVisible(driver, firstNameHeader);
-        WaitHelper.waitForElementToBeClickable(driver, firstNameHeader);
+        WaitHelper.waitForElementToBeVisibleAndClickable(driver, firstNameHeader);
         for (WebElement row : tableRows) {
             List<WebElement> cells = row.findElements(cell);
             String firstName = cells.get(0).getText().trim();

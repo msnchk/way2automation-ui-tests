@@ -24,9 +24,9 @@ public class FramesAndWindowsPage extends BasePage {
 
     @Step("Click 'Open new tab' inside frame and switch on last tab")
     public NewTabPage clickOpenNewTabAndSwitch() {
-        switchToIframe(iframe);
+        elementHelper.switchToIframe(iframe);
         openNewTabText.click();
-        switchToLastTab();
+        pageHelper.switchToLastTab();
         return new NewTabPage(driver, actions);
     }
 }

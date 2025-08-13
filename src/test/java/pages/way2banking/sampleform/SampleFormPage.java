@@ -57,11 +57,11 @@ public class SampleFormPage extends BasePage {
 
 
     private void chooseHobby(List<String> answers) {
-        selectCheckboxAnswersByValue(hobbiesCheckboxes, answers);
+        elementHelper.selectCheckboxAnswersByValue(hobbiesCheckboxes, answers);
     }
 
     private void chooseGender(String answer) {
-        selectDropdownByValue(genderSelect, answer);
+        elementHelper.selectDropdownByValue(genderSelect, answer);
     }
 
     private String getLongestHobbyWord() {

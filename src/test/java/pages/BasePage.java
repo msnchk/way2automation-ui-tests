@@ -1,117 +1,33 @@
 package pages;
 
-import helpers.WaitHelper;
-import io.qameta.allure.Step;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.JavascriptExecutor;
+import helpers.AlertHelper;
+import helpers.ElementHelper;
+import helpers.PageHelper;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class BasePage {
-    protected WebDriver driver;
-    protected Actions actions;
+    protected final WebDriver driver;
+    protected final Actions actions;
+    protected final AlertHelper alertHelper;
+    protected final ElementHelper elementHelper;
+    protected final PageHelper pageHelper;
 
     public BasePage(WebDriver driver, Actions actions) {
         this.driver = driver;
         this.actions = actions;
+        this.alertHelper = new AlertHelper(driver, actions);
+        this.elementHelper = new ElementHelper(driver, actions);
+        this.pageHelper = new PageHelper(driver, actions);
         PageFactory.initElements(driver, this);
     }
 
-    @Step("Check if the current page has vertical scroll")
-    public boolean hasVerticalScroll() {
-        JavascriptExecutor js = (JavascriptExecutor)driver;
-        Long scrollHeight = (Long) js.executeScript("return document.documentElement.scrollHeight;");
-        Long clientHeight = (Long) js.executeScript("return document.documentElement.clientHeight");
-        return scrollHeight > clientHeight;
+    public AlertHelper getAlertHelper() {
+        return alertHelper;
     }
 
-    @Step("Check if the current page has horizontal scroll")
-    public boolean hasHorizontalScroll() {
-        JavascriptExecutor js = (JavascriptExecutor)driver;
-        Long scrollWidth = (Long) js.executeScript("return document.documentElement.scrollWidth;");
-        Long clientWidth = (Long) js.executeScript("return document.documentElement.clientWidth");
-        return scrollWidth > clientWidth;
-    }
-
-    @Step("Get count of opened windows/tabs")
-    public int getWindowCount() {
-        return driver.getWindowHandles().size();
-    }
-
-    @Step("Check if alert present")
-    public boolean isAlertPresent() {
-        try {
-            driver.switchTo().alert();
-            return true;
-        } catch (org.openqa.selenium.NoAlertPresentException e) {
-            return false;
-        }
-    }
-
-    @Step("Get alert text if exists")
-    public String getAlertTextIfExists() {
-        try {
-            Alert alert = driver.switchTo().alert();
-            return alert.getText();
-        } catch (org.openqa.selenium.NoAlertPresentException e) {
-            return "";
-        }
-    }
-
-    @Step("Accept alert")
-    public void acceptAlert() {
-        driver.switchTo().alert().accept();
-    }
-
-    protected void clickWhenClickable(WebElement element) {
-        WaitHelper.waitForElementToBeVisible(driver, element);
-        WaitHelper.waitForElementToBeClickable(driver, element);
-        actions.scrollToElement(element).click().perform();
-    }
-
-    protected void clickAfterPause(WebElement element) {
-        WaitHelper.waitForElementToBeVisible(driver, element);
-        WaitHelper.waitForElementToBeClickable(driver, element);
-        actions.pause(300).moveToElement(element).click().perform();
-    }
-
-    protected void unfocusElement(WebElement element) {
-        JavascriptExecutor js = (JavascriptExecutor)driver;
-        js.executeScript("arguments[0].blur();", element);
-    }
-
-    protected void switchToIframe(WebElement frame) {
-        driver.switchTo().frame(frame);
-    }
-
-    protected void switchToLastTab() {
-        List<String> handles = new ArrayList<>(driver.getWindowHandles());
-        String lastHandle = handles.get(handles.size() - 1);
-        driver.switchTo().window(lastHandle);
-    }
-
-    protected void selectCheckboxAnswersByValue(List<WebElement> checkboxes, List<String> desiredValues) {
-        for(WebElement checkbox: checkboxes) {
-            String value = checkbox.getAttribute("value");
-            if (desiredValues.contains(value)) {
-                checkbox.click();
-            }
-        }
-    }
-
-    protected void selectDropdownByValue(WebElement selectorElement, String value) {
-        Select select = new Select(selectorElement);
-        select.selectByValue(value);
-    }
-
-    protected void selectDropdownByText(WebElement selectorElement, String text) {
-        Select select = new Select(selectorElement);
-        select.selectByVisibleText(text);
+    public PageHelper getPageHelper() {
+        return pageHelper;
     }
 }

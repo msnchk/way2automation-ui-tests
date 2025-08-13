@@ -47,25 +47,25 @@ public class MainPage extends BasePage {
 
     @Step("Navigate to 'API Testing with Java' course from the flip box")
     public void navigateToAPITestingWithJavaFromFlipBox() {
-        clickWhenClickable(ApiTestingWithJavaFlipBox);
+        elementHelper.clickWhenClickable(ApiTestingWithJavaFlipBox);
         actions.pause(Duration.ofMillis(600)).perform();
-        clickWhenClickable(readMoreApiTestingWithJavaButton);
+        elementHelper.clickWhenClickable(readMoreApiTestingWithJavaButton);
     }
 
     @Step("Navigate to 'API Testing with Java' course from the flip box")
     public void failNavigateToAPITestingWithJavaFromFlipBox() {
-        clickWhenClickable(ApiTestingWithJavaFlipBox);
+        elementHelper.clickWhenClickable(ApiTestingWithJavaFlipBox);
         readMoreApiTestingWithJavaButton.click();
     }
 
     @Step("Navigate to 'Robot Framework for Automation' course from the carousel")
     public void navigateToRobotFrameworkForAutomationFromCarousel() {
         actions.scrollToElement(mostPopularCoursesBlock);
-        clickWhenClickable(robotFrameworkForAutomationButton);
+        elementHelper.clickWhenClickable(robotFrameworkForAutomationButton);
     }
 
     @Step("Click 'Register Now' button on the main page")
     public void clickButtonRegisterNowOnMainPage() {
-        clickWhenClickable(registerNowMainPageButton);
+        elementHelper.clickWhenClickable(registerNowMainPageButton);
     }
 }

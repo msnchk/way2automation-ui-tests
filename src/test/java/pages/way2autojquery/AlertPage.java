@@ -37,7 +37,7 @@ public class AlertPage extends BasePage {
 
     @Step("Click 'Display Alert' button inside iframe")
     public void clickDisplayAlertButton() {
-        switchToIframe(iframe);
+        elementHelper.switchToIframe(iframe);
         displayAlertButton.click();
     }
 
