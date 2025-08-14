@@ -3,15 +3,12 @@ package helpers;
 import io.qameta.allure.Step;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
 
 public class AlertHelper {
     private final WebDriver driver;
-    private final Actions actions;
 
-    public AlertHelper(WebDriver driver, Actions actions) {
+    public AlertHelper(WebDriver driver) {
         this.driver = driver;
-        this.actions = actions;
     }
 
     @Step("Check if alert present")

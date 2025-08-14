@@ -1,11 +1,12 @@
 package helpers;
 
-import org.openqa.selenium.JavascriptExecutor;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ElementHelper {
@@ -26,11 +27,6 @@ public class ElementHelper {
     public void clickAfterPause(WebElement element) {
         WaitHelper.waitForElementToBeVisibleAndClickable(driver, element);
         actions.moveToElement(element).pause(300).click().perform();
-    }
-
-    public void unfocusElement(WebElement element) {
-        JavascriptExecutor js = (JavascriptExecutor)driver;
-        js.executeScript("arguments[0].blur();", element);
     }
 
     public void switchToIframe(WebElement frame) {
@@ -54,5 +50,17 @@ public class ElementHelper {
     public void selectDropdownByText(WebElement selectorElement, String text) {
         Select select = new Select(selectorElement);
         select.selectByVisibleText(text);
+    }
+
+    @Step("Get count of opened windows/tabs")
+    public int getWindowCount() {
+        return driver.getWindowHandles().size();
+    }
+
+    @Step("Switch to last browser tab")
+    public void switchToLastTab() {
+        List<String> handles = new ArrayList<>(driver.getWindowHandles());
+        String lastHandle = handles.get(handles.size() - 1);
+        driver.switchTo().window(lastHandle);
     }
 }

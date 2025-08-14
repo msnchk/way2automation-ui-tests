@@ -22,7 +22,7 @@ public class NewTabPage extends BasePage {
     @Step("Click 'Open new tab' and switch on last tab")
     public NewTabPage clickOpenNewTabAndSwitch() {
         openNewTabText.click();
-        pageHelper.switchToLastTab();
+        elementHelper.switchToLastTab();
         return new NewTabPage(driver, actions);
     }
 }

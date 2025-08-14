@@ -26,7 +26,7 @@ public class FramesAndWindowsPage extends BasePage {
     public NewTabPage clickOpenNewTabAndSwitch() {
         elementHelper.switchToIframe(iframe);
         openNewTabText.click();
-        pageHelper.switchToLastTab();
+        elementHelper.switchToLastTab();
         return new NewTabPage(driver, actions);
     }
 }

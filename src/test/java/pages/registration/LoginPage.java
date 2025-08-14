@@ -67,7 +67,7 @@ public class LoginPage extends BasePage {
     public void touchUsernameInputAndUnfocus() {
         WaitHelper.waitForElementToBeVisibleAndClickable(driver, usernameInput);
         usernameInput.click();
-        elementHelper.unfocusElement(usernameInput);
+        javaScriptHelper.unfocusElement(usernameInput);
     }
 
     @Step("Check if validation error for 'Username' is displayed")

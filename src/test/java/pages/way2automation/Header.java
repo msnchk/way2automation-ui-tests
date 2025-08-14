@@ -47,6 +47,6 @@ public class Header extends BasePage {
     public void navigateToYouTubeFromHeaderIcon() {
         elementHelper.clickWhenClickable(youTubeIcon);
         WaitHelper.waitForNumberOfTabs(driver, 2);
-        pageHelper.switchToLastTab();
+        elementHelper.switchToLastTab();
     }
 }
