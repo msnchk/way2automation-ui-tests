@@ -1,7 +1,7 @@
 package pages.sqlex;
 
 import helpers.CookiesHelper;
-import helpers.PropertyProvider;
+import helpers.EnvKeys;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,7 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import pages.BasePage;
 
 public class SqlExMainPage extends BasePage {
-    public static final String SQLEX_MAIN_PAGE_URL = PropertyProvider.sqlExBaseUrl();
+    public static final String SQLEX_MAIN_PAGE_URL = EnvKeys.SQLEX_MAIN_PAGE_URL.get();
 
     @FindBy(name = "login")
     private WebElement usernameInput;
@@ -29,13 +29,13 @@ public class SqlExMainPage extends BasePage {
     }
 
     @Step("Log in to SQLEx using login and password or saved cookies")
-    public void sqlExAuthorize(String username, String password) {
+    public void sqlExAuthorize() {
         if (CookiesHelper.cookieFileExists()) {
             driver.manage().deleteAllCookies();
             CookiesHelper.loadCookiesFromFile(driver);
             driver.navigate().refresh();
         } else {
-            sqlExLogIn(username, password);
+            sqlExLogIn(EnvKeys.SQLEX_LOGIN.get(), EnvKeys.SQLEX_PASSWORD.get());
             CookiesHelper.saveCookiesToFile(driver);
         }
     }

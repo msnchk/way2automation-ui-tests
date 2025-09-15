@@ -40,7 +40,7 @@ public class TestingPageTest extends BaseTest {
 
         SoftAssert soft = new SoftAssert();
         soft.assertEquals(
-                newTabPage.getWindowCount(),
+                newTabPage.getElementHelper().getWindowCount(),
                 2,
                 "Expected 2 tabs to be open after the first click"
         );
@@ -52,7 +52,7 @@ public class TestingPageTest extends BaseTest {
         newTabPage.clickOpenNewTabAndSwitch();
 
         soft.assertEquals(
-                newTabPage.getWindowCount(),
+                newTabPage.getElementHelper().getWindowCount(),
                 3,
                 "Expected 3 tabs to be open after the second click"
         );

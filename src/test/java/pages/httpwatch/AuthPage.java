@@ -1,6 +1,6 @@
 package pages.httpwatch;
 
-import helpers.PropertyProvider;
+import helpers.EnvKeys;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import pages.BasePage;
 
 public class AuthPage extends BasePage {
-    public static final String HTTPWATCH_AUTH_URL = PropertyProvider.httpWatchUrl();
+    public static final String HTTPWATCH_AUTH_URL = EnvKeys.HTTPWATCH_AUTH_URL.get();
 
     @FindBy(id = "displayImage")
     private WebElement displayImageButton;
@@ -27,9 +27,12 @@ public class AuthPage extends BasePage {
     }
 
     @Step("Build authenticated image URL using username and password")
-    public String getImageBasicAuthURL(String username, String password) {
+    public String getImageBasicAuthURL() {
        String imageSrc = authenticatedImage.getAttribute("src");
-       return insertBasicAuthIntoHttpsUrl(imageSrc, username, password);
+       return insertBasicAuthIntoHttpsUrl(
+               imageSrc,
+               EnvKeys.HTTPWATCH_LOGIN.get(),
+               EnvKeys.HTTPWATCH_PASSWORD.get());
     }
 
     private String insertBasicAuthIntoHttpsUrl(String url, String username, String password) {

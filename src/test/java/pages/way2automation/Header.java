@@ -33,20 +33,20 @@ public class Header extends BasePage {
     @Step("Navigate to 'Selenium with Java' from the top menu")
     public void navigateToSeleniumWithJavaFromMenu() {
        actions.moveToElement(allCoursesMenu).perform();
-       clickWhenClickable(seleniumSubMenu);
-       clickWhenClickable(seleniumWithJavaSubMenu);
+       elementHelper.clickWhenClickable(seleniumSubMenu);
+       elementHelper.clickWhenClickable(seleniumWithJavaSubMenu);
     }
 
     @Step("Navigate to 'Cypress' from the top menu")
     public void navigateToCypressTutorialFromMenu() {
         actions.moveToElement(videoTutorialMenu).perform();
-        clickWhenClickable(cypressSubMenu);
+        elementHelper.clickWhenClickable(cypressSubMenu);
     }
 
     @Step("Click the YouTube icon in the header")
     public void navigateToYouTubeFromHeaderIcon() {
-        clickWhenClickable(youTubeIcon);
+        elementHelper.clickWhenClickable(youTubeIcon);
         WaitHelper.waitForNumberOfTabs(driver, 2);
-        switchToLastTab();
+        elementHelper.switchToLastTab();
     }
 }

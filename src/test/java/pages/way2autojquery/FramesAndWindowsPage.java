@@ -1,6 +1,6 @@
 package pages.way2autojquery;
 
-import helpers.PropertyProvider;
+import helpers.EnvKeys;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,7 +9,8 @@ import org.openqa.selenium.support.FindBy;
 import pages.BasePage;
 
 public class FramesAndWindowsPage extends BasePage {
-    public static final String FRAMES_AND_WINDOWS_URL = PropertyProvider.jqueryBaseUrl() + "frames-and-windows.php";
+    public static final String FRAMES_AND_WINDOWS_URL =
+            EnvKeys.WAY2_BASE_URL.get() + EnvKeys.JQUERY_FRAMES_PATH.get();
 
     @FindBy(className = "demo-frame")
     private WebElement iframe;
@@ -23,9 +24,9 @@ public class FramesAndWindowsPage extends BasePage {
 
     @Step("Click 'Open new tab' inside frame and switch on last tab")
     public NewTabPage clickOpenNewTabAndSwitch() {
-        switchToIframe(iframe);
+        elementHelper.switchToIframe(iframe);
         openNewTabText.click();
-        switchToLastTab();
+        elementHelper.switchToLastTab();
         return new NewTabPage(driver, actions);
     }
 }

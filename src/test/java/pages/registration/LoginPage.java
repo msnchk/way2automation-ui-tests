@@ -1,5 +1,6 @@
 package pages.registration;
 
+import helpers.EnvKeys;
 import helpers.WaitHelper;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -12,7 +13,8 @@ import pages.BasePage;
 import java.util.List;
 
 public class LoginPage extends BasePage {
-    public static final String LOGIN_FORM_URL = LoginConfirmPage.LOGIN_CONFIRM_URL + "login";
+    public static final String LOGIN_FORM_URL =
+            EnvKeys.WAY2_BASE_URL.get() + EnvKeys.LOGIN_FORM_PATH.get();
 
     @FindBy(id = "username")
     private WebElement usernameInput;
@@ -37,7 +39,7 @@ public class LoginPage extends BasePage {
 
     @Step("Fill login form with username, password and description:")
     public void inputLoginData(String username, String password, String usernameDescription) {
-        WaitHelper.waitForElementToBeClickable(driver, usernameInput);
+        WaitHelper.waitForElementToBeVisibleAndClickable(driver, usernameInput);
         usernameInput.sendKeys(username);
         passwordInput.sendKeys(password);
         usernameDescriptionInput.sendKeys(usernameDescription);
@@ -63,9 +65,9 @@ public class LoginPage extends BasePage {
 
     @Step("Click on the 'Username' field and then unfocus")
     public void touchUsernameInputAndUnfocus() {
-        WaitHelper.waitForElementToBeClickable(driver, usernameInput);
+        WaitHelper.waitForElementToBeVisibleAndClickable(driver, usernameInput);
         usernameInput.click();
-        unfocusElement(usernameInput);
+        javaScriptHelper.unfocusElement(usernameInput);
     }
 
     @Step("Check if validation error for 'Username' is displayed")

@@ -19,7 +19,7 @@ public class PropertyProvider {
         }
     }
 
-    private static String getProperty(String key) {
+    protected static String getProperty(String key) {
         if (!properties.containsKey(key)) {
             throw new IllegalArgumentException("Ключ '" + key + "' отсутствует в properties");
         }
@@ -29,30 +29,6 @@ public class PropertyProvider {
         }
         return value;
     }
-
-    public static String gridUrl() { return getProperty("grid.url"); }
-
-    public static String baseUrl() { return getProperty("way2automation.base.url"); }
-
-    public static String jqueryBaseUrl() {return getProperty("jquery.base.url"); }
-
-    public static String loginFormUrl() {
-        return getProperty("angularjs-protractor.registration.url");
-    }
-
-    public static String sqlExBaseUrl() { return getProperty("sqlex.base.url"); }
-
-    public static String sqlExLogin() { return getProperty("sqlex.login"); }
-
-    public static String sqlExPassword() { return getProperty("sqlex.password"); }
-
-    public static String sqlExCookieFailPath() {return getProperty("sqlex.cookie.filepath"); }
-
-    public static String httpWatchUrl() { return getProperty("httpwatch.auth.url"); }
-
-    public static String httpWatchLogin() { return getProperty("httpwatch.login"); }
-
-    public static String httpWatchPassword() { return getProperty("httpwatch.password"); }
 }
 
 

@@ -1,66 +1,37 @@
 package pages;
 
-import helpers.WaitHelper;
-import io.qameta.allure.Step;
-import org.openqa.selenium.JavascriptExecutor;
+import helpers.AlertHelper;
+import helpers.ElementHelper;
+import helpers.JavaScriptHelper;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public abstract class BasePage {
-    protected WebDriver driver;
-    protected Actions actions;
+    protected final WebDriver driver;
+    protected final Actions actions;
+    protected final AlertHelper alertHelper;
+    protected final ElementHelper elementHelper;
+    protected final JavaScriptHelper javaScriptHelper;
 
     public BasePage(WebDriver driver, Actions actions) {
         this.driver = driver;
         this.actions = actions;
+        this.alertHelper = new AlertHelper(driver);
+        this.elementHelper = new ElementHelper(driver, actions);
+        this.javaScriptHelper = new JavaScriptHelper(driver);
         PageFactory.initElements(driver, this);
     }
 
-    @Step("Check if the current page has vertical scroll")
-    public boolean hasVerticalScroll() {
-        JavascriptExecutor js = (JavascriptExecutor)driver;
-        Long scrollHeight = (Long) js.executeScript("return document.documentElement.scrollHeight;");
-        Long clientHeight = (Long) js.executeScript("return document.documentElement.clientHeight");
-        return scrollHeight > clientHeight;
+    public final AlertHelper getAlertHelper() {
+        return alertHelper;
     }
 
-    @Step("Check if the current page has horizontal scroll")
-    public boolean hasHorizontalScroll() {
-        JavascriptExecutor js = (JavascriptExecutor)driver;
-        Long scrollWidth = (Long) js.executeScript("return document.documentElement.scrollWidth;");
-        Long clientWidth = (Long) js.executeScript("return document.documentElement.clientWidth");
-        return scrollWidth > clientWidth;
+    public final ElementHelper getElementHelper() {
+        return elementHelper;
     }
 
-    @Step("Get count of opened windows/tabs")
-    public int getWindowCount() {
-        return driver.getWindowHandles().size();
-    }
-
-    protected void clickWhenClickable(WebElement element) {
-        WaitHelper.waitForElementToBeVisible(driver, element);
-        WaitHelper.waitForElementToBeClickable(driver, element);
-        actions.scrollToElement(element);
-        element.click();
-    }
-
-    protected void unfocusElement(WebElement element) {
-        JavascriptExecutor js = (JavascriptExecutor)driver;
-        js.executeScript("arguments[0].blur();", element);
-    }
-
-    protected void switchToIframe(WebElement frame) {
-        driver.switchTo().frame(frame);
-    }
-
-    protected void switchToLastTab() {
-        List<String> handles = new ArrayList<>(driver.getWindowHandles());
-        String lastHandle = handles.get(handles.size() - 1);
-        driver.switchTo().window(lastHandle);
+    public final JavaScriptHelper getJavaScriptHelper() {
+        return javaScriptHelper;
     }
 }

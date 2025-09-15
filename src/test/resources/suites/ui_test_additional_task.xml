@@ -1,0 +1,40 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="BankingUITests_Sequential">
+    <parameter name="executionType" value="local"/>
+
+    <test name="ChromeBankingUITests">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="tests.way2banking.BankingUITest">
+                <methods>
+                    <include name="shouldTestSampleFormWithValidData"></include>
+                    <include name="shouldAddCustomerWithValidData"></include>
+                </methods>
+            </class>
+            <class name="tests.way2banking.BankingUITestGivenCustomer">
+                <methods>
+                    <include name="shouldOpenAccountForCustomer"></include>
+                </methods>
+            </class>
+            <class name="tests.way2banking.BankingUITestGivenCustomerWithAccount">
+                <methods>
+                    <include name="shouldTestCustomerAccountLogin"></include>
+                    <include name="shouldDeleteCustomerWhoHasAccount"></include>
+                </methods>
+            </class>
+            <class name="tests.way2banking.BankingUITestGivenCustomerWithAccountAndDeposits">
+                <methods>
+                    <include name="shouldTestDepositWithValidAndInvalidData"></include>
+                    <include name="shouldTestWithdrawWithValidAndInvalidData"></include>
+                </methods>
+            </class>
+            <class name="tests.way2banking.BankingUITestGivenCustomerWithAccountAndTransactions">
+                <methods>
+                    <include name="shouldTestCustomerBalance"></include>
+                    <include name="shouldWithdrawAllCustomerMoney"></include>
+                    <include name="shouldResetCustomerTransactions"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

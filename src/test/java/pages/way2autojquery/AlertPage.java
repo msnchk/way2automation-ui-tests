@@ -1,6 +1,6 @@
 package pages.way2autojquery;
 
-import helpers.PropertyProvider;
+import helpers.EnvKeys;
 import helpers.WaitHelper;
 import io.qameta.allure.Step;
 import org.openqa.selenium.Alert;
@@ -11,7 +11,8 @@ import org.openqa.selenium.support.FindBy;
 import pages.BasePage;
 
 public class AlertPage extends BasePage {
-    public static final String ALERT_PAGE_URL = PropertyProvider.jqueryBaseUrl() + "alert.php";
+    public static final String ALERT_PAGE_URL =
+            EnvKeys.WAY2_BASE_URL.get() + EnvKeys.JQUERY_ALERT_PATH.get();
 
     @FindBy(xpath = "//a[contains(text(), 'Input Alert')]")
     private WebElement inputAlertTab;
@@ -36,7 +37,7 @@ public class AlertPage extends BasePage {
 
     @Step("Click 'Display Alert' button inside iframe")
     public void clickDisplayAlertButton() {
-        switchToIframe(iframe);
+        elementHelper.switchToIframe(iframe);
         displayAlertButton.click();
     }
 

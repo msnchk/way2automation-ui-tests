@@ -10,7 +10,7 @@ import java.nio.file.Paths;
 import java.util.Set;
 
 public class CookiesHelper {
-    private static final Path COOKIE_FILE_PATH = Paths.get(PropertyProvider.sqlExCookieFailPath());
+    private static final Path COOKIE_FILE_PATH = Paths.get(EnvKeys.SQLEX_COOKIE_FILEPATH.get());
 
     public static void saveCookiesToFile(WebDriver driver) {
         try {
